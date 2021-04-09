@@ -35,12 +35,18 @@ app.get("/", function (req, res) {
 					console.log(err);
 				}
 
-				res.render("index");
+				res.render("index", { employees: employees });
 			});
 		});
 	} catch (error) {
 		console.log(error);
 	}
+});
+
+app.get("/redirect", function (req, res) {
+	// res.send("halo");
+	// res.redirect("/");
+	res.render("bob", { a: "ooooo", b: "gogoo" });
 });
 
 app.use("/employees", employeeRoutes);
