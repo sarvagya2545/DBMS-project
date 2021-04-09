@@ -10,3 +10,6 @@ create table employees(
     password varchar(100), 
     email varchar(40) unique not null
 );
+
+-- insert employees
+insert into employees (eid, name, salary, contact, password, email) values (1, 'John', 12000, '9876543210', 'kckldnfcjkdsnfkvjdnfvkjdvkjd', 'A@b.com');

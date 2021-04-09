@@ -17,6 +17,7 @@ app.use(
 	)
 );
 app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
 	try {
@@ -31,7 +32,7 @@ app.get("/", function (req, res) {
 					console.log(err);
 				}
 
-				res.send(employees);
+				res.render("index", { employees: employees });
 			});
 		});
 	} catch (error) {
