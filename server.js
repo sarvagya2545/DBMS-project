@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const myConnection = require("express-myconnection");
 const mysql = require("mysql");
+const employeeRoutes = require("./routes/employee");
+const dishRoutes = require("./routes/dishes");
 
 app.use(
 	myConnection(
@@ -32,12 +34,15 @@ app.get("/", function (req, res) {
 					console.log(err);
 				}
 
-				res.render("index", { employees: employees });
+				res.render("index");
 			});
 		});
 	} catch (error) {
 		console.log(error);
 	}
 });
+
+app.use("/employees", employeeRoutes);
+app.use("/dishes", dishRoutes);
 
 app.listen(3000, console.log("LISTENING"));
