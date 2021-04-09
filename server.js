@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const myConnection = require("express-myconnection");
@@ -11,7 +12,7 @@ app.use(
 		{
 			host: "localhost",
 			user: "root",
-			password: "Sarvagya@2545",
+			password: process.env.PASSWORD,
 			port: 3306,
 			database: "restaurant",
 		},
