@@ -5,6 +5,7 @@ const myConnection = require("express-myconnection");
 const mysql = require("mysql");
 const employeeRoutes = require("./routes/employee");
 const dishRoutes = require("./routes/dishes");
+const path = require("path");
 
 // MIDDLEWARES
 app.use(
@@ -22,6 +23,7 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+app.use(express.static(path.resolve(__dirname, "public")));
 
 // ROUTES
 app.use("/employees", employeeRoutes);
