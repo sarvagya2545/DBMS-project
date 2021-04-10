@@ -6,7 +6,8 @@
     <meta name="description" content="">
     <title>Restaurant name</title>
     <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+<link rel="stylesheet" href="css/dash.css">
 
     <style>
       .bd-placeholder-img {
@@ -30,6 +31,64 @@
 
   </head>
   <body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-unlink"></span> 
+                <span>dbmsproject</span>
+            </h3> 
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="ti-face-smile"></span>
+                        <span>Tables</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="">
+                        <span class="ti-clipboard"></span>
+                        <span>Leaves</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="ti-folder"></span>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="ti-time"></span>
+                        <span>Timesheet</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="ti-book"></span>
+                        <span>Contacts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="ti-settings"></span>
+                        <span>Account</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Restaurant name</a>
@@ -147,7 +206,7 @@
               <th>Booked by</th>
               <th>Capacity</th>
               <th>Available</th>
-              <th>Status</th>
+              <!-- <th>Status</th> -->
             </tr>
           </thead>
           <tbody>
@@ -156,8 +215,8 @@
               <td><%= tables[i].tableID %></td>
               <td><%=tables[i].BookedBy%></td>
               <td><%=tables[i].Capacity%></td>
-              <td><%=tables[i].Availability%> <a href="#">Change status</a></td>
-              <td><%=tables[i].Status%></td>
+              <td><%=tables[i].Availability%> <a href="#">Change availability</a></td>
+              <!-- <td><%=tables[i].Status%></td> -->
             </tr>
             <% } %>
 
