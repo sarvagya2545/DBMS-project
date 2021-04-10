@@ -5,7 +5,9 @@ const myConnection = require("express-myconnection");
 const mysql = require("mysql");
 const employeeRoutes = require("./routes/employee");
 const dishRoutes = require("./routes/dishes");
+const dashboardRoutes = require("./routes/dashboard");
 const path = require("path");
+
 
 // MIDDLEWARES
 app.use(
@@ -45,5 +47,6 @@ app.get('/', function (req, res) {
 
 app.use("/employees", employeeRoutes);
 app.use("/dishes", dishRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.listen(3000, console.log("LISTENING"));
