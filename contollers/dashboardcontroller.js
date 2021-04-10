@@ -7,7 +7,7 @@ module.exports = {
 				}
 
                 else{
-                    res.render("dashboard");
+                    res.render("dashboard_1");
                 }
 
 				
