@@ -8,6 +8,7 @@ const session = require("express-session");
 const passport = require("passport");
 const db = require("./config/db");
 const flash = require("connect-flash");
+const { ensureAuthenticated } = require("./middleware/auth");
 
 // passport config
 require("./config/passport")(passport);
@@ -84,7 +85,7 @@ app.get("/", function (req, res) {
 
 app.use("/employees", employeeRoutes);
 app.use("/dishes", dishRoutes);
-app.use("/dashboard", (req, res) => {
+app.use("/dashboard", ensureAuthenticated, (req, res) => {
 	res.render("dashboard");
 });
 
