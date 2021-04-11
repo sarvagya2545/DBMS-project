@@ -1,25 +1,101 @@
+const passport = require("passport");
+const db = require("../config/db");
+const bcrypt = require("bcryptjs");
+
 module.exports = {
 	getEmployees: function (req, res) {
 		try {
-			req.getConnection((err, conn) => {
+			db.query("SELECT * FROM employees", (err, result) => {
 				if (err) {
-					console.log(err);
+					throw err;
 				}
 
-				conn.query("SELECT * FROM employees", (err, employees) => {
-					if (err) {
-						// return res.send(err);
-						console.log(err);
-					}
-
-					res.render("index", { employees: employees });
-				});
+				res.render("index", { employees: result });
 			});
 		} catch (error) {
 			console.log(error);
+			return res.status(500).send(error);
 		}
 	},
-	login: function (req, res) {
-		res.send("login");
+	loginPage: function (req, res) {
+		res.render("login");
+	},
+	login: (req, res, next) =>
+		passport.authenticate("local", {
+			successRedirect: "/dashboard",
+			failureRedirect: "/employees/login",
+			failureFlash: true,
+		})(req, res, next),
+	newEmployeePage: function (req, res, next) {
+		res.render("newEmployee");
+	},
+	newEmployee: function (req, res) {
+		// Pull data out of req.body
+		const { name, email, password, password2, salary, contact } = req.body;
+		let errors = [];
+
+		// Check required fields
+		if (!name || !email || !password || !password2) {
+			errors.push({ msg: "Please fill in all fields" });
+		}
+
+		// Check passwords match
+		if (password !== password2) {
+			errors.push({ msg: "Passwords do not match" });
+		}
+
+		// Check passwords length
+		if (password.length < 6) {
+			errors.push({ msg: "Passwords length must be at least 6 characters" });
+		}
+
+		if (errors.length > 0) {
+			res.render("newEmployee", {
+				errors,
+				name,
+				email,
+				password,
+				password2,
+				salary,
+				contact,
+			});
+		} else {
+			// Validation passed
+			db.query(`SELECT * FROM employees WHERE email = ${email}`, (err, result) => {
+				if (result) {
+					errors.push({ msg: "User is already registered" });
+					res.render("newEmployee", {
+						errors,
+						name,
+						email,
+						password,
+						password2,
+					});
+				} else {
+					bcrypt.genSalt(10, function (err, salt) {
+						bcrypt.hash(password, salt, function (err, hash) {
+							if (err) throw err;
+
+							console.log(name, salary, contact, hash, email);
+
+							const sql = `INSERT INTO employees (name, salary, contact, password, email)
+								VALUES ('${name}', '${salary}', ${contact}, '${hash}', '${email}')
+							`;
+
+							db.query(sql, (err, results) => {
+								if (err) {
+									console.log(err);
+									errors.push({ msg: "Not saved, server error" });
+									return res.render("newEmployee");
+								}
+
+								req.flash("success_msg", "You are now registered and can log in");
+								res.redirect("/employees/login");
+							});
+						});
+					});
+				}
+			});
+		}
 	},
 };
