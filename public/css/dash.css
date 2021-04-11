@@ -46,11 +46,13 @@
 
 .sidebar li {
     margin-bottom: 1.5rem;
+    
 }
 
 .sidebar a {
     color: #fff;
     font-size: .8rem;
+    text-decoration: none;
 }
 
 .sidebar a span:last-child {
