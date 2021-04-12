@@ -44,41 +44,47 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="">
+                    <a href="/dashboard">
                         <span class="ti-home"></span>
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/dashboard/tables">
                         <span class="ti-face-smile"></span>
                         <span>Tables</span>
                     </a>
                 </li>
+                <li>
+                  <a href="/dashboard/menu">
+                      <span class="ti-face-smile"></span>
+                      <span>Menu</span>
+                  </a>
+              </li>
                 
                 <li>
-                    <a href="">
+                    <a href="/dashboard/orders">
                         <span class="ti-clipboard"></span>
-                        <span>Menu</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="">
-                        <span class="ti-time"></span>
                         <span>Orders</span>
                     </a>
                 </li>
+                
                 <li>
-                    <a href="">
-                        <span class="ti-book"></span>
+                    <a href="/dashboard/customers">
+                        <span class="ti-time"></span>
                         <span>Customers</span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/dashboard/staff_management">
+                        <span class="ti-book"></span>
+                        <span>Staff Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/profile">
                         <span class="ti-settings"></span>
-                        <span>Account</span>
+                        <span>Profile</span>
                     </a>
                 </li>
             </ul>
@@ -222,8 +228,9 @@
           </thead>
           <tbody> -->
 <main>
-            <section class="recent">
-              <div class="activity-grid">
+  
+           <!-- <section class="recent">-->
+              <!--<div class="activity-grid">-->
                   <div class="activity-card">
                       <h3>Table Occupancy</h3>
                       
@@ -239,16 +246,21 @@
                                       
                                   </tr>
                               </thead>
+                             
 
                               <% for( let i=0; i < tables.length; i++ ) { %>
                                 <tr>
                                   <td><%= tables[i].tableID %></td>
                                   <td><%=tables[i].BookedBy%></td>
                                   <td><%=tables[i].Capacity%></td>
-                                  <td><%=tables[i].Availability%> <a href="#"><img src="https://img.icons8.com/small/16/000000/change.png"/></a></td>
+                                  <td><%=tables[i].Availability%> <a href="myfunc()"><img src="https://img.icons8.com/small/16/000000/change.png" id="change_status" onclick="myfunc()"/></a></td>
                                   <!-- <td><%=tables[i].Status%></td> -->
                                 </tr>
                                 <% } %>
+                                
+
+                                
+                                
                     
                               </main>
            
