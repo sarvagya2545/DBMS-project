@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="../css/dash.css">
+    <link rel="stylesheet" href="/css/dash.css">
 </head>
 <body>
     <input type="checkbox" id="sidebar-toggle">
@@ -32,35 +32,28 @@
                         <span>Tables</span>
                     </a>
                 </li>
-                <li>
-                  <a href="/dashboard/menu">
-                      <span class="ti-face-smile"></span>
-                      <span>Menu</span>
-                  </a>
-              </li>
-                
+
                 <li>
                     <a href="/dashboard/orders">
                         <span class="ti-clipboard"></span>
                         <span>Orders</span>
                     </a>
                 </li>
-                
                 <li>
                     <a href="/dashboard/customers">
-                        <span class="ti-time"></span>
+                        <span class="ti-folder"></span>
                         <span>Customers</span>
                     </a>
                 </li>
                 <li>
                     <a href="/dashboard/staff_management">
-                        <span class="ti-book"></span>
+                        <span class="ti-time"></span>
                         <span>Staff Management</span>
                     </a>
                 </li>
                 <li>
                     <a href="/dashboard/profile">
-                        <span class="ti-settings"></span>
+                        <span class="ti-book"></span>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -83,6 +76,50 @@
                 
             </div>
         </header>
+
+        
+<main>
+    
+           <!-- <section class="recent">-->
+              <!--<div class="activity-grid">-->
+                  <div class="activity-card">
+                      <h3>Our Staff</h3>
+                      
+                      <div class="table-responsive">
+                          <table>
+                              <thead>
+                                  <tr>
+                                      <th>Staff ID</th>
+                                      <th>Staff Name</th>
+                                      <th>Designation</th>
+                                      <!-- <th>Attendance</th> -->
+                                      <th>Contact Number</th>
+                                      <th>Email Address</th>
+                                      
+                                      
+                                  </tr>
+                              </thead>
+                             
+
+                              <% for( let i=0; i < staff.length; i++ ) { %>
+                                <tr>
+                                  <td><%= staff[i].staffID %></td>
+                                  <td><%=staff[i].staffName%></td>
+                                  <td><%=staff[i].designation%></td>
+                                  <!-- <td><%=staff[i].attendance%></td> -->
+                                  <td><%=staff[i].staffContact%></td>
+                                  <td><%=staff[i].staffEmail%></td>
+                                 
+                                </tr>
+                                <% } %>
+                                
+
+                                
+                                
+                    
+                              </main>
+           
+
     
     
 </body>

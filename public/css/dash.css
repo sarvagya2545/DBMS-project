@@ -86,7 +86,7 @@
 .main-content {
     position: relative;
     margin-left: 240px;
-    transition: margin-left 500ms;
+    /* transition: margin-left 500ms; */
 }
 
 header {
