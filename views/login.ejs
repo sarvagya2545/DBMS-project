@@ -20,9 +20,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Employee Login</div>
-                        <%- include('./partials/messages.ejs'); %>
+                    <%- include('./partials/messages.ejs'); %>
+                        <div class="card">
+                            <div class="card-header">Employee Login</div>
                             <div class="card-body">
                                 <form action="/employees/login" method="POST">
                                     <div class="form-group row">
@@ -50,7 +50,7 @@
                                     </div>
                             </div>
                             </form>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
