@@ -222,9 +222,13 @@ main {
 	border-radius: 7px;
 }
 
+.activity-card {
+	padding-top: 0.1rem;
+}
+
 .activity-card h3 {
 	color: var(--text-grey);
-	margin: 1rem;
+	margin: 0.5rem 1rem;
 }
 
 .activity-card table {
