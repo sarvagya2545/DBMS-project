@@ -5,9 +5,21 @@
 	-moz-user-select: none;
 	user-select: none;
 }
+/* .bg-light{
+	background-color: #0d6cca !important;
+} */
 
+
+.navbar-brand{
+	color:#ffffff;
+}
+.navbar-custom{
+	background-color: #027581;
+}
 @media (min-width: 768px) {
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;
 	}
 }
+
+
