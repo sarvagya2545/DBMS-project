@@ -88,6 +88,7 @@ app.get("/", function (req, res) {
 app.use("/employees", employeeRoutes);
 app.use("/dishes", dishRoutes);
 
+
 app.use("/dashboard", dashboardRoutes);
 /*app.use("/dashboard", ensureAuthenticated, (req, res) => {
 	res.render("dashboard");

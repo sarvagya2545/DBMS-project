@@ -1,10 +1,10 @@
 module.exports = {
 	dashboard: function (req, res) {
 		try {
+
 			// db.query(sql, function (req, res) {
 
 			// })
-
 			res.render("dashboard_1");
 		} catch (error) {
 			console.log(error);
@@ -14,6 +14,7 @@ module.exports = {
 	tables: function (req, res) {
 		var tables = [
 			{
+
 				tableID: "1",
 				BookedBy: "Customer name1",
 				Capacity: "4",
@@ -36,8 +37,12 @@ module.exports = {
 			},
 		];
 		try {
-			res.render("tables", { tables: tables });
-		} catch (error) {
+			
+			res.render("tables", {tables:tables});
+				
+			}
+		 catch (error) {
+
 			console.log(error);
 		}
 	},
