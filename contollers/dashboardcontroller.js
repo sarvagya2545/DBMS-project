@@ -9,17 +9,20 @@ module.exports = {
 
 
 	tables: function (req, res) {
+		var status;
 		var tables=[
 			{
-				tableID:"1",BookedBy:"Customer name1", Capacity:"8", Availability:"Available", Status:"Functional"
+				tableID:"1",BookedBy:"Customer name1", Capacity:"8", Availability:"Available", Status: status
 			},
 			{
-				tableID:"2",BookedBy:"Customer name2", Capacity:"8", Availability:"Busy", Status:"Functional"
+				tableID:"2",BookedBy:"Customer name2", Capacity:"8", Availability:"Busy", Status:status
 			},
 			{
-				tableID:"3",BookedBy:"Customer name3", Capacity:"4", Availability:"Busy", Status:"Non-Functional"
-			},
+				tableID:"3",BookedBy:"Customer name3", Capacity:"4", Availability:"Busy", Status:status
+			}
 		]
+		
+		
 		try {
 			
 			res.render("tables", {tables:tables});
@@ -28,5 +31,64 @@ module.exports = {
 		 catch (error) {
 			console.log(error);
 		}
+	},
+
+	customers: function(req,res) {
+
+		var customers = [
+			{CustomerID:"1", CustomerName:"Brandon",CustomerContact:"91879232023", CustomerEmail:"abc@bits.com"},
+			{CustomerID:"2", CustomerName:"Mayer",CustomerContact:"32434224324", CustomerEmail:"abc@bits.com"},
+			{CustomerID:"3", CustomerName:"Jason",CustomerContact:"3243243233", CustomerEmail:"abc@bits.com"},
+			{CustomerID:"4", CustomerName:"Tom",CustomerContact:"6575676756", CustomerEmail:"abc@bits.com"}
+		]
+
+		try{
+			res.render("customers",{customers: customers});
+		}
+		catch(error){
+            console.log(error);
+		}
+
+	},
+
+	menu: function(req,res)  {
+
+		var dishes =[
+
+		]
+		try {
+			res.render("menu");
+		}
+		catch(error){
+			console.log(error);
+		}
+	},
+
+	profile: function(req,res) {
+		try{
+			res.render("profile");
+		}
+		catch(error){
+			console.log(error);
+		}
+	},
+
+	orders: function(req,res){
+		try{
+			res.render("orders");
+		}
+		catch(error){
+			console.log(error);
+		}
+	},
+	staffmanagement: function(req,res){
+		try{
+			res.render("staff_management");
+		}
+		catch(error){
+			console.log(error);
+		}
 	}
+
+ 
 };
