@@ -43,15 +43,11 @@ module.exports = {
 	},
 
 	customers: function (req, res) {
-		var customers = [
-			{ CustomerID: "1", CustomerName: "Brandon", CustomerContact: "91879232023", CustomerEmail: "abc@bits.com" },
-			{ CustomerID: "2", CustomerName: "Mayer", CustomerContact: "32434224324", CustomerEmail: "abc@bits.com" },
-			{ CustomerID: "3", CustomerName: "Jason", CustomerContact: "3243243233", CustomerEmail: "abc@bits.com" },
-			{ CustomerID: "4", CustomerName: "Tom", CustomerContact: "6575676756", CustomerEmail: "abc@bits.com" },
-		];
-
 		try {
-			res.render("customers", { customers: customers });
+			db.query("SELECT * FROM customer", (err, result) => {
+				console.log(result);
+				res.render("customers", { customers: result });
+			});
 		} catch (error) {
 			console.log(error);
 		}
