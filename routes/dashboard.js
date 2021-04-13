@@ -5,7 +5,7 @@ const dashboardcontroller = require("../contollers/dashboardcontroller");
 
 router.get("/", dashboardcontroller.dashboard);
 
-router.get("/tables", dashboardcontroller.tables);
+/*router.get("/tables", dashboardcontroller.tables);*/
 router.get("/customers", dashboardcontroller.customers);
 router.get("/profile",dashboardcontroller.profile);
 router.get("/orders",dashboardcontroller.orders);
