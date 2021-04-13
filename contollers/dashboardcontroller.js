@@ -51,18 +51,6 @@ module.exports = {
 
 	},
 
-	menu: function(req,res)  {
-
-		var dishes =[
-
-		]
-		try {
-			res.render("menu");
-		}
-		catch(error){
-			console.log(error);
-		}
-	},
 
 	profile: function(req,res) {
 		try{
@@ -81,9 +69,17 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	staffmanagement: function(req,res){
+	staff_management: function(req,res){
+
+		var staff = [
+			{staffID:"1", staffName:"Brandon",designation:"Manager",attendance:"Present",staffContact:"91879232023", staffEmail:"abc@bits.com"},
+			{staffID:"2", staffName:"Mayer",designation:"Cook",attendance:"Absent",staffContact:"32434224324", staffEmail:"abc@bits.com"},
+			{staffID:"3", staffName:"Jason",designation:"Receptionist",attendance:"Present",staffContact:"3243243233", staffEmail:"abc@bits.com"},
+			{staffID:"4", staffName:"Tom",designation:"Waiter",attendance:"Present",staffContact:"6575676756", staffEmail:"abc@bits.com"}
+		]
+
 		try{
-			res.render("staff_management");
+			res.render("staff_management",{staff:staff});
 		}
 		catch(error){
 			console.log(error);
