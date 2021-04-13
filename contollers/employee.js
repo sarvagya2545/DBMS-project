@@ -31,7 +31,7 @@ module.exports = {
 	},
 	newEmployee: function (req, res) {
 		// Pull data out of req.body
-		const { name, email, password, password2, salary, contact } = req.body;
+		const { name, email, password, password2, salary, contact, designation } = req.body;
 		let errors = [];
 
 		// Check required fields
@@ -58,6 +58,7 @@ module.exports = {
 				password2,
 				salary,
 				contact,
+				designation,
 			});
 		} else {
 			// Validation passed
@@ -70,6 +71,9 @@ module.exports = {
 						email,
 						password,
 						password2,
+						salary,
+						contact,
+						designation,
 					});
 				} else {
 					bcrypt.genSalt(10, function (err, salt) {
@@ -78,8 +82,8 @@ module.exports = {
 
 							console.log(name, salary, contact, hash, email);
 
-							const sql = `INSERT INTO employees (name, salary, contact, password, email)
-								VALUES ('${name}', '${salary}', ${contact}, '${hash}', '${email}')
+							const sql = `INSERT INTO employees (name, salary, contact, password, email, designation)
+								VALUES ('${name}', '${salary}', ${contact}, '${hash}', '${email}', '${designation}')
 							`;
 
 							db.query(sql, (err, results) => {
