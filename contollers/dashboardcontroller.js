@@ -9,7 +9,7 @@ module.exports = {
 		}
 	},
 
-	tables: function (req, res) {
+/*	tables: function (req, res) {
 		var status;
 		var tables = [
 			{
@@ -40,7 +40,7 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
-	},
+	},*/
 
 	customers: function (req, res) {
 		try {
