@@ -43,15 +43,18 @@
         <div class="album py-5 bg-light custom-bg">
           <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <% for( let i=0; i < dishes.length; i++ ) { %>
+              <% for( let i=0; i < dish.length; i++ ) { %>
                 <div class="col col-md-6 col-lg-4">
                   <div class="card shadow-sm">
-                    <img src=<%=dishes[i].Image%> class="img-responsive" alt="Image">
+                    <img src=insert link here > class="img-responsive" alt="Image">
 
                     <div class="card-body">
                       <h3>
-                        <%= dishes[i].dishName %>
+                        <%= dish[i].name %>
+                        <span class="badge rounded-pill bg-dark"><%=dish[i].availability%></span>
+
                       </h3>
+                      
                       <p class="card-text">Dish Description: This is a wider card with supporting text below as a
                         natural
                         lead-in to additional content. This content is a little bit longer.</p>
@@ -61,7 +64,7 @@
                           <button type="button" class="btn btn-sm btn-outline-secondary">Order Now</button>
                         </div>
 
-                        <h3><span class="badge rounded-pill bg-dark">₹ <%=dishes[i].price%></span></h3>
+                        <h3><span class="badge rounded-pill bg-dark">₹ <%=dish[i].price%></span></h3>
                       </div>
                     </div>
                   </div>
