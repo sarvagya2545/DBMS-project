@@ -82,7 +82,19 @@ app.get("/", function (req, res) {
 			Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVl_HTICim5UbPVrGB3lw0Ayod39rLeFaBag&usqp=CAU",
 		},
 	];
-	res.render("menu", { dishes: dishes });
+	try {
+			db.query("SELECT * FROM dish", (err, result) => {
+				if (err) {
+					throw err;
+				}
+
+				res.render("menu", { dish: result });
+			});
+		} catch (error) {
+			console.log(error);
+			return res.status(500).send(error);
+		}
+	// res.render("menu", { dishes: dishes });
 });
 
 app.use("/employees", employeeRoutes);
