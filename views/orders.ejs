@@ -87,7 +87,8 @@
                             <tr>
                                 <th>Order ID</th>
                                 <th>Customer Name</th>
-                                <th>Table Number</th>
+                                <!-- <th>Table Number</th> -->
+                                <th>Date Ordered</th>
                                 <th>Time Ordered</th>
                                 <th>Time Delivered</th>
                                 <th>Dishes</th>
@@ -95,7 +96,26 @@
                                 
                             </tr>
                         </thead>
+                        <% for( let i=0; i < orders.length; i++ ) { %>
+                            <tr>
+                                <td>
+                                    <%= orders[i].ord_id %>
+                                </td>
+                                <td>
+                                    <%=orders[i].name%>
+                                </td>
+                                <td>
+                                    <%= orders[i].date.toLocaleDateString()%>
+                                </td>
+                                <td>
+                                    <%=orders[i].time_ordered%>
+                                </td>
+                                <td>
+                                    <%=orders[i].time_delivered%>
+                                </td>
 
+                            </tr>
+                            <% } %>
 
 
 
