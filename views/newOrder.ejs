@@ -7,6 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="/css/dash.css">
+    <link rel="stylesheet" href="/css/select2.css">
+    <link rel="stylesheet" href="/css/newOrder.css">
+    <script src="/js/selectscript.js" defer></script>
 </head>
 
 <body>
@@ -28,12 +31,7 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="/dashboard/tables">
-                        <span class="ti-face-smile"></span>
-                        <span>Tables</span>
-                    </a>
-                </li>-->
+
 
                 <li>
                     <a href="/dashboard/orders">
@@ -75,49 +73,40 @@
             </div>
         </header>
 
-
         <main>
-            <div class="activity-card">
-                <h3>Our Staff</h3>
-
-                <div class="table-responsive">
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Staff ID</th>
-                                <th>Staff Name</th>
-                                <th>Contact Number</th>
-                                <th>Email Address</th>
-                            </tr>
-                        </thead>
+            <h2 class="dash-title">New Order</h2>
+            <form action="" class="form-new-order">
+                <select data-custom name="customer" class="customer">
+                    <option value="-">Select customer</option>
+                    <% for(let i=0; i < customers.length; i++) { %>
+                        <option value="<%= customers[i].id %>">
+                            <%= customers[i].name %>
+                        </option>
+                        <% } %>
+                </select>
 
 
-                        <% for( let i=0; i < staff.length; i++ ) { %>
-                            <tr>
-                                <td>
-                                    <%= staff[i].eid %>
-                                </td>
-                                <td>
-                                    <%=staff[i].name%>
-                                </td>
-                                <td>
-                                    <%=staff[i].contact%>
-                                </td>
-                                <td>
-                                    <%=staff[i].email%>
-                                </td>
+                <select data-custom name="dish" class="dish">
+                    <option value="-">Select dish</option>
+                    <% for(let i=0; i < dishes.length; i++) { %>
+                        <option value="<%= dishes[i].id %>">
+                            <%= dishes[i].name %>
+                        </option>
+                        <% } %>
+                </select>
 
-                            </tr>
-                            <% } %>
+                <button class="btn btn-new-customer">Add new customer</button>
 
+                <label for="qty" class="labelqty">Quantity</label>
+                <input type="number" min="1" class="qty" placeholder="quantity" name="quantity">
 
+                <label for="seat" class="labelseat">Seat no</label>
+                <input type="number" placeholder="Seat No" name="seat" class="seat">
 
-
+                <button type="submit" class="btn btn-submit">Submit Order</button>
+            </form>
 
         </main>
-
-
 
 
 </body>

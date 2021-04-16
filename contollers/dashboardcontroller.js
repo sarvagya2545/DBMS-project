@@ -9,7 +9,7 @@ module.exports = {
 		}
 	},
 
-/*	tables: function (req, res) {
+	/*	tables: function (req, res) {
 		var status;
 		var tables = [
 			{
@@ -79,5 +79,19 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
+	},
+	newOrder: async function (req, res) {
+		try {
+
+			const [customers] = await db.promise().query("SELECT * FROM customer");
+			const [dishes] = await db.promise().query("SELECT * FROM dish");
+
+			console.log(dishes, customers);
+
+			res.render("newOrder", { dishes, customers });
+		} catch (error) {
+			console.log(error);
+		}
+
 	},
 };

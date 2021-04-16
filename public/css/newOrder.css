@@ -1,0 +1,62 @@
+.form-new-order {
+    display: grid;
+    grid-template-areas: 
+        'customerInput dishInput'
+        'newCustomer .'
+        '. .'
+        'labelqty labelseat'
+        'qty seat'
+        'btn .'
+    ;
+
+    grid-gap: 10px;
+}
+
+.btn {
+    border: 2px solid black;
+    background-color: #fff;
+    padding: 10px;
+
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: hsl(200, 100%, 70%);
+}
+
+input {
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.customer {
+    grid-area: customerInput;
+}
+
+.dish {
+    grid-area: dishInput;
+}
+
+.btn-new-customer {
+    grid-area: newCustomer;
+}
+
+.qty {
+    grid-area: qty;
+}
+
+.labelqty {
+    grid-area: labelqty;
+}
+
+.labelseat {
+    grid-area: labelseat;
+}
+
+.seat {
+    grid-area: seat;
+}
+
+.btn-submit {
+    grid-area: btn;
+}
