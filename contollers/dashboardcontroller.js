@@ -1,5 +1,6 @@
 const db = require("../config/db");
 
+
 module.exports = {
 	dashboard: function (req, res) {
 		try {
@@ -85,18 +86,24 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	newOrder: async function (req, res) {
+
+	reports: function (req, res) {
 		try {
+			db.query("select sum(ordered_dishes.quantity * dish.price) as todaySales, date as d from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());", (err, result) => {
+				if (err) {
+					res.render("reports", { error: err });
+				}
+				res.render("reports", { report: result });
 
-			const [customers] = await db.promise().query("SELECT * FROM customer");
-			const [dishes] = await db.promise().query("SELECT * FROM dish");
-
-			console.log(dishes, customers);
-
-			res.render("newOrder", { dishes, customers });
+			});
 		} catch (error) {
 			console.log(error);
 		}
-
 	},
+
+
+
 };
+
+
+
