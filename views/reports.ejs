@@ -85,69 +85,9 @@
             <canvas id="myChart" width="400" height="400"></canvas>
     
         
-            <script>
-            
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: report[i].date ,
-                    datasets: [{
-                        label: '# of Votes',
-                        data: report[i].todaySales,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                            
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-            </script>              
+            <script src="/js/chart.js"></script>          
   
-              <script>
-            
-                        async function getSales(){
-                        var xs= [];
-                        var ys= [];
-            
-                        for(let i=0; i<report.length;i++){
-            
-                        var ydata= report[i].todaySales;
-                        ys.push(ydata);
-                        var xdata= report[i].date;
-                        xs.push(xdata);
-                        }
-            
-                        return {xs,ys};
-            
-                    }
-                </script>
-                <script>
-
-                    async function sales(){
-                    var xs=[];
-                    var ys= [];
-
-                    report.forEach(element => {
-                        xs.push(element.todaySales);
-                        ys.push(element.d);
-                        
-                    });
-                    return {xs,ys};
-
-                    }
-
-                </script>
+              
 
         </main>
 
