@@ -59,4 +59,5 @@ input {
 
 .btn-submit {
     grid-area: btn;
+    background-color: hsl(200, 100%, 70%);
 }
