@@ -63,7 +63,12 @@ module.exports = {
 
 	orders: function (req, res) {
 		try {
-			res.render("orders");
+			db.query("Select ord_id, name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id;", (err, result) => {
+				if (err) {
+					res.render("orders", { error: err });
+				}
+				res.render("orders", { orders: result });
+			});
 		} catch (error) {
 			console.log(error);
 		}
