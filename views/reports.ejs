@@ -83,11 +83,48 @@
         <main>
             <h2 class="dash-title">Reports page</h2>
             <canvas id="myChart" width="400" height="400"></canvas>
+      <script>
+            chartit();
+            async function chartit(){
+                var data= await getSales();       
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.xs ,
+                        datasets: [{
+                            label: '# of Votes',
+                            data: data.ys,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                                
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
     
         
-            <script src="/js/chart.js"></script>          
-  
-              
+            <!--<script src="/js/chart.js"></script>-->
+            <% async function getSales()  %>
+            <% let xs=[] let ys=[] %>
+            <% for( let i=0 ; i< report.length;i++){  %>
+                <%ys.push(%><%=report.todaySales%><%)%>
+                <%xs.push(%><%=report.d%><%)%>
+                <% return {xs,ys} %>
+
+          
 
         </main>
 
