@@ -10,7 +10,7 @@ module.exports = {
 		}
 	},
 
-/*	tables: function (req, res) {
+	/*	tables: function (req, res) {
 		var status;
 		var tables = [
 			{
