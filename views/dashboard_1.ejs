@@ -61,7 +61,7 @@
                         <span>Profile</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="/dashboard/reports">
                         <span class="ti-pie-chart"></span>
@@ -114,7 +114,9 @@
                         <span class="ti-check-box"></span>
                         <div>
                             <h5>Total Orders Today</h5>
-                            <h4><%=orderstoday.length%></h4>
+                            <h4>
+                                <%=orderstoday.length%>
+                            </h4>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -127,9 +129,11 @@
                         <span class="ti-reload"></span>
                         <div>
                             <h5>Current Orders</h5>
-                            
-                                <h4><%=currentorders.length%></h4>
-                               
+
+                            <h4>
+                                <%=currentorders.length%>
+                            </h4>
+
                             </h4>
                         </div>
 
@@ -147,8 +151,9 @@
                         <div>
                             <h5>Total Sales Today</h5>
                             <% for(let i=0; i< totalSales.length; i++){ %>
-                            <h4>₹<%=totalSales[i].todaySales%></h4>
-                            <%}%>
+                                <h4>₹<%=totalSales[i].todaySales || 0%>
+                                </h4>
+                                <%}%>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -169,7 +174,7 @@
                                     <tr>
                                         <th>Order ID</th>
                                         <th>Customer ID</th>
-                                        
+
                                         <th>Employee ID</th>
                                         <th>Time Ordered</th>
                                         <th>Status</th>
@@ -177,24 +182,32 @@
                                 </thead>
                                 <tbody>
                                     <% for(let i=0; i< orderstoday.length; i++){ %>
-                                    <tr>
-                                        <td><%=orderstoday[i].ord_id%></td>
-                                        <td><%=orderstoday[i].cid_id%></td>
-                                        <td><%=orderstoday[i].eid%></td>
-                                        <td>
-                                            <span class="timeOrder"><%=orderstoday[i].time_ordered%></span>
-                                        </td>
+                                        <tr>
+                                            <td>
+                                                <%=orderstoday[i].ord_id%>
+                                            </td>
+                                            <td>
+                                                <%=orderstoday[i].cid_id%>
+                                            </td>
+                                            <td>
+                                                <%=orderstoday[i].eid%>
+                                            </td>
+                                            <td>
+                                                <span class="timeOrder">
+                                                    <%=orderstoday[i].time_ordered%>
+                                                </span>
+                                            </td>
 
-                                        <td>
-                                            <span class="badge warning">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <% } %>
+                                            <td>
+                                                <span class="badge warning">Pending</span>
+                                            </td>
+                                        </tr>
+                                        <% } %>
 
-                                    
-                                    
-                                    
-                                    
+
+
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -205,7 +218,9 @@
                             <div class="summary-single">
                                 <span class="ti-id-badge"></span>
                                 <div>
-                                    <h5> <%=employees.length %></h5>
+                                    <h5>
+                                        <%=employees.length %>
+                                    </h5>
                                     <small>Number of staff</small>
                                 </div>
                             </div>
@@ -213,7 +228,9 @@
                             <div class="summary-single">
                                 <span class="ti-face-smile"></span>
                                 <div>
-                                    <h5><%=orders.length %></h5>
+                                    <h5>
+                                        <%=orders.length %>
+                                    </h5>
                                     <small>Total Orders Served by us</small>
                                 </div>
                             </div>
