@@ -2,6 +2,7 @@
 
 :root {
 	--main-color: #027581;
+	--main-color-light: #0291a1;
 	--color-dark: #1d2231;
 	--text-grey: #8390a2;
 }
@@ -356,7 +357,8 @@ tbody tr:nth-child(even) {
 	text-align: center;
 }
 
-.text-center button {
+.text-center button,
+.btn-primary {
 	background: var(--main-color);
 	color: #fff;
 	border: 1px solid var(--main-color);
@@ -366,6 +368,21 @@ tbody tr:nth-child(even) {
 
 .table-responsive {
 	overflow-x: auto;
+}
+
+.btn-primary {
+	margin: 10px 0;
+	display: inline-block;
+}
+
+.btn-primary a {
+	color: #fff;
+}
+
+.btn-primary:hover {
+	cursor: pointer;
+	background-color: var(--main-color-light);
+	border: 1px solid var(--main-color-light);
 }
 
 @media only screen and (max-width: 1200px) {
