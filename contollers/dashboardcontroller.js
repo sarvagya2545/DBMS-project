@@ -11,11 +11,12 @@ module.exports = {
 			const [totalSalesToday] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
 			const [orderstoday] = await db.promise().query("select * from orders as orders_current  where date=current_date()");
 			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
+			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as ordercost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id group by ord_id;");
 			
 			console.log(totalSalesToday);
 
 
-			res.render("dashboard_1", { employees, orders, recentOrders, totalSalesToday, orderstoday,name,openOrder });
+			res.render("dashboard_1", { employees, orders, recentOrders, totalSalesToday, orderstoday,name,openOrder ,orderCost});
 
 			console.log(JSON.stringify(totalSalesToday));
 
@@ -55,13 +56,13 @@ module.exports = {
 		try {
             const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id;");
 			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id;");
-			
+			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as ordercost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id group by ord_id;");
 			console.log(orders);
 
 			const { email, name, eid, contact, salary, designation } = req.user;
 
 
-			res.render("orders", { orders, orderdishes,name});
+			res.render("orders", { orders, orderdishes,name, orderCost});
 
 
 			// console.log(JSON.stringify(totalSalesToday));
