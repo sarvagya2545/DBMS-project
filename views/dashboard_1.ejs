@@ -75,7 +75,8 @@
 
         <header>
 
-            <h2 class="dash-welcome">Welcome, <%=name%></h2>
+            <h2 class="dash-welcome">Welcome, <%=name%>
+            </h2>
             <!--<div class="search-wrapper">
                 <span class="ti-search"></span>
                 <input type="search" placeholder="Search">
@@ -148,8 +149,8 @@
                         <span class=ti-money></span>
                         <div>
                             <h5>Total Sales Today</h5>
-                                <h4>₹ <%=totalSalesToday[0].todaySales%>
-                                </h4>
+                            <h4>₹ <%=totalSalesToday[0].todaySales || 0%>
+                            </h4>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -230,11 +231,11 @@
                             </div>
                         </div>
 
-
-
-
                     </div>
                 </div>
+                <a class="btn-primary" href="/dashboard/newOrder">
+                    Add order
+                </a>
     </div>
     </section>
 

@@ -21,6 +21,7 @@ db.connect();
 
 // body parser
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // ejs and public files
 app.set("view engine", "ejs");
@@ -83,17 +84,17 @@ app.get("/", function (req, res) {
 		},
 	];
 	try {
-			db.query("SELECT * FROM dish", (err, result) => {
-				if (err) {
-					throw err;
-				}
+		db.query("SELECT * FROM dish", (err, result) => {
+			if (err) {
+				throw err;
+			}
 
-				res.render("menu", { dish: result });
-			});
-		} catch (error) {
-			console.log(error);
-			return res.status(500).send(error);
-		}
+			res.render("menu", { dish: result });
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).send(error);
+	}
 	// res.render("menu", { dishes: dishes });
 });
 
