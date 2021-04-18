@@ -46,7 +46,7 @@
               <% for( let i=0; i < dish.length; i++ ) { %>
                 <div class="col col-md-6 col-lg-4">
                   <div class="card shadow-sm">
-                    <img src=insert link here > class="img-responsive" alt="Image">
+                    <img src=<%= dishimages[i].Image %> class="img-responsive" alt="Image"></img>
 
                     <div class="card-body">
                       <h3>
@@ -55,13 +55,12 @@
 
                       </h3>
                       
-                      <p class="card-text">Dish Description: This is a wider card with supporting text below as a
-                        natural
-                        lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><%=dishimages[i].dishDescription%></p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Add to Order Cart</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Order Now</button>
+                          <h3><span class="badge bg-secondary">Tags</span></h3>
+                          <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Add to Order Cart</button>
+                          <button type="button" class="btn btn-sm btn-outline-secondary">Order Now</button> -->
                         </div>
 
                         <h3><span class="badge rounded-pill bg-dark">₹ <%=dish[i].price%></span></h3>

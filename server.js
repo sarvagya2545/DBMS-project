@@ -53,34 +53,55 @@ app.use((req, res, next) => {
 
 // ROUTES
 app.get("/", function (req, res) {
-	var dishes = [
+	var dishimages = [
 		{
 			dishID: "0",
-			dishName: "Pizza",
+			dishDescription: "Pizza is a savory dish of Italian origin consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes, cheese, and often various other ingredients, which is then baked at a high temperature, traditionally in a wood-fired oven. A small pizza is sometimes called a pizzetta.",
 			price: "200",
 			typeOfFood: "Fastfood",
 			Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsh-vwIw4nZLQ5lUJf-hnz7uQiEykeKqMfeg&usqp=CAU",
 		},
 		{
 			dishID: "1",
-			dishName: "Noodles",
+			dishDescription: "Noodles are a type of food made from unleavened dough which is rolled flat and cut, stretched or extruded, into long strips or strings. Noodles can be refrigerated for short-term storage or dried and stored for future use. Noodles are usually cooked in boiling water, sometimes with cooking oil or salt added.",
 			price: "70",
 			typeOfFood: "Fastfood",
 			Image: "https://recipetineats.com/wp-content/uploads/2019/11/Lo-Mein_5.jpg",
 		},
 		{
 			dishID: "2",
-			dishName: "Samosa",
+			dishDescription: "Flaky and tender fried samosa are one of the most popular recipes in North Indian cuisine. They feature a pastry-like crust but are filled with savory potatoes and peas for a hearty, delicious snack. This step-by-step guide will help you to make the flakiest, tastiest, absolutely best Punjabi samosa from scratch!",
 			price: "30",
 			typeOfFood: "Fastfood",
 			Image: "https:rakskitchen.net/wp-content/uploads/2015/12/samosa-recipe-500x375.jpg",
 		},
 		{
 			dishID: "3",
-			dishName: "Paneer Kofta",
+			dishDescription: "Handi paneer is a delicious and creamy gravy cooked in a handi. The gravy in this handi paneer recipe is made with a base of cashews, onions and tomatoes. I have also used some milk powder to add faint sweet notes in the gravy. You can also use cream instead of milk powder.",
 			price: "150",
 			typeOfFood: "Main Course",
-			Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVl_HTICim5UbPVrGB3lw0Ayod39rLeFaBag&usqp=CAU",
+			Image: "https://static.toiimg.com/thumb/54713904.cms?imgsize=248047&width=800&height=800",
+		},
+		{
+			dishID: "4",
+			dishDescription: "A salad is a dish consisting of mixed pieces of food, sometimes with at least one raw ingredient. It is often dressed, and is typically served at room temperature or chilled, though some can be served warm. Garden salads use a base of leafy greens such as lettuce, arugula/rocket, kale or spinach; they are common enough that the word salad alone often refers specifically to garden salads.",
+			price: "150",
+			typeOfFood: "Main Course",
+			Image: "https://thumbor.thedailymeal.com/NYCPrj4KxEMfgFHjh8MaqF4WRZY=/870x565/filters:focal(600x400:601x401)/https://www.thedailymeal.com/sites/default/files/recipe/2020/5_spring_salad.jpg",
+		},
+		{
+			dishID: "5",
+			dishDescription: "Tandoori Naan is typical and a very popular leavened oven baked flatbread. ... In Turkic, Persian, Urdu, Hindi or Punjabi any flat bread is known as Naan. Tandoori Naan is a speciality wherein the flatbread is baked in a cylindrical clay oven.",
+			price: "150",
+			typeOfFood: "Main Course",
+			Image: "http://sherepunjab.ge/wp-content/uploads/2020/08/Butter_Naan_2.jpg",
+		},
+		{
+			dishID: "6",
+			dishDescription: "Dish Name",
+			price: "150",
+			typeOfFood: "Main Course",
+			Image: "",
 		},
 	];
 	try {
@@ -89,7 +110,7 @@ app.get("/", function (req, res) {
 				throw err;
 			}
 
-			res.render("menu", { dish: result });
+			res.render("menu", { dish: result,dishimages });
 		});
 	} catch (error) {
 		console.log(error);
