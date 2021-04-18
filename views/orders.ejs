@@ -101,7 +101,8 @@
                                     <%= orders[i].ord_id %>
                                 </td>
                                 <td>
-                                    <%=orders[i].name%>
+                                    <%=orders[i].custname%>
+                                    
                                 </td>
                                 <td>
                                     <%= orders[i].date.toLocaleDateString()%>
@@ -111,6 +112,9 @@
                                 </td>
                                 <td>
                                     <%=orders[i].time_delivered%>
+                                </td>
+                                <td>
+                                    <%=orders[i].dishname%>
                                 </td>
 
                             </tr>
