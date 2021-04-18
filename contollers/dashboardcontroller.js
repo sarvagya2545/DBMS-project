@@ -9,7 +9,7 @@ module.exports = {
 			const [orders] = await db.promise().query("SELECT * FROM orders");
 			const [orderstoday] = await db.promise().query("select * from orders where date = (select curdate());");
 			const [totalSales] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
-			const [currentorders] = await db.promise().query(" select * as orders_current from orders where time_delivered is NULL");
+			const [currentorders] = await db.promise().query("select * from orders as orders_current  where time_delivered is NULL");
 			console.log(totalSales);
 
 
