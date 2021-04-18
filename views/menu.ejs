@@ -46,16 +46,20 @@
               <% for( let i=0; i < dish.length; i++ ) { %>
                 <div class="col col-md-6 col-lg-4">
                   <div class="card shadow-sm">
-                    <img src=<%= dishimages[i].Image %> class="img-responsive" alt="Image"></img>
+                    <img src=<%=dishimages[i].Image %> class="img-responsive" alt="Image"></img>
 
                     <div class="card-body">
-                      <h3>
+                      <h3 class="d-flex justify-content-between align-items-center">
                         <%= dish[i].name %>
-                        <span class="badge rounded-pill bg-dark"><%=dish[i].availability%></span>
+                          <span class="badge rounded-pill bg-dark">
+                            <%=dish[i].availability%>
+                          </span>
 
                       </h3>
-                      
-                      <p class="card-text"><%=dishimages[i].dishDescription%></p>
+
+                      <p class="card-text">
+                        <%=dishimages[i].dishDescription%>
+                      </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <h3><span class="badge bg-secondary">Tags</span></h3>
