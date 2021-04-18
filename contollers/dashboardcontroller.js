@@ -7,13 +7,15 @@ module.exports = {
 			const { email, name, eid, contact, salary, designation } = req.user;
 			const [employees] = await db.promise().query("SELECT * FROM employees");
 			const [orders] = await db.promise().query("SELECT * FROM orders");
-			const [orderstoday] = await db.promise().query("select * from orders where date = (select curdate());");
+			const [recentOrders] = await db.promise().query("Select * from orders where (select current_time()) -time_ordered < 020000 and date=(select current_date()) and time_delivered is NULL;");
 			const [totalSales] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
-			const [currentorders] = await db.promise().query("select * from orders as orders_current  where time_delivered is NULL");
+			const [orderstoday] = await db.promise().query("select * from orders as orders_current  where date=current_date()");
+			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
+			
 			console.log(totalSales);
 
 
-			res.render("dashboard_1", { employees, orders, orderstoday, totalSales, currentorders,name });
+			res.render("dashboard_1", { employees, orders, recentOrders, totalSales, orderstoday,name,openOrder });
 
 			console.log(JSON.stringify(totalSales));
 
