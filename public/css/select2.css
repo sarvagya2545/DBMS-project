@@ -66,3 +66,26 @@
 .custom-select-option.selected {
   background-color: hsl(200, 100%, 50%);
 }
+
+.btn-primary {
+	background: var(--main-color);
+	color: #fff;
+	border: 1px solid var(--main-color);
+	border-radius: 4px;
+	padding: 0.4rem 1rem;
+}
+
+.btn-primary {
+	margin: 10px 0;
+	display: inline-block;
+}
+
+.btn-primary a {
+	color: #fff;
+}
+
+.btn-primary:hover {
+	cursor: pointer;
+	background-color: var(--main-color-light);
+	border: 1px solid var(--main-color-light);
+}

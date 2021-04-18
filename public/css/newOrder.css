@@ -1,3 +1,8 @@
+:root {
+    --main-color: #027581;
+    --main-color-light: #0291a1;
+}
+
 .form-new-order {
     display: grid;
     grid-template-areas: 
@@ -13,15 +18,9 @@
 }
 
 .btn {
-    border: 2px solid black;
-    background-color: #fff;
-    padding: 10px;
+    grid-area: btn;
 
     cursor: pointer;
-}
-
-.btn:hover {
-    background-color: hsl(200, 100%, 70%);
 }
 
 input {
@@ -55,9 +54,4 @@ input {
 
 .seat {
     grid-area: seat;
-}
-
-.btn-submit {
-    grid-area: btn;
-    background-color: hsl(200, 100%, 70%);
 }
