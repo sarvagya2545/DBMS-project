@@ -10,70 +10,129 @@
 </head>
 
 <body>
-    <%- include('partials/sidebar'); %>
 
-        <div class="main-content">
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-unlink"></span>
+                <span>dbmsproject</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
 
-            <header>
-
-                <h2 class="dash-welcome">Welcome, <%=name%></h2>
-
-                <div class="social-icons">
-                    <span class="ti-user"></span>
-
-                </div>
-            </header>
-
-            <main>
-                <a class="btn-primary" href="/dashboard/newOrder">
-                    Add order
-                </a>
-                <div class="activity-card">
-                    <h3 class="dash-title">Orders</h3>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer Name</th>
-                                    <th>Date Ordered</th>
-                                    <th>Time Ordered</th>
-                                    <th>Time Delivered</th>
-                                    <th>Dishes</th>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/dashboard">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
 
 
-                                </tr>
-                            </thead>
-                            <% for( let i=0; i < orders.length; i++ ) { %>
-                                <tr>
-                                    <td>
-                                        <%= orders[i].ord_id %>
-                                    </td>
-                                    <td>
-                                        <%=orders[i].custname%>
+                <li>
+                    <a href="/dashboard/orders">
+                        <span class="ti-clipboard"></span>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/customers">
+                        <span class="ti-folder"></span>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/staff_management">
+                        <span class="ti-time"></span>
+                        <span>Staff Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/profile">
+                        <span class="ti-id-badge"></span>
+                        <span>Profile</span>
+                    </a>
+                </li>
 
-                                    </td>
-                                    <td>
-                                        <%= orders[i].date.toLocaleDateString()%>
-                                    </td>
-                                    <td>
-                                        <%=orders[i].time_ordered%>
-                                    </td>
-                                    <td>
-                                        <%=orders[i].time_delivered%>
-                                    </td>
-                                    <td>
-                                        <%=orders[i].dishname%>
-                                    </td>
+                <li>
+                    <a href="/dashboard/reports">
+                        <span class="ti-pie-chart"></span>
+                        <span>Reports</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-                                </tr>
+    <div class="main-content">
+
+        <header>
+
+            <h2 class="dash-welcome">Welcome, User123</h2>
+
+            <div class="social-icons">
+                <span class="ti-user"></span>
+
+            </div>
+        </header>
+
+        <main>
+            <h2 class="dash-title">Orders</h2>
+            <div class="activity-card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer Name</th>
+                                <!-- <th>Table Number</th> -->
+                                <th>Date Ordered</th>
+                                <th>Time Ordered</th>
+                                <th>Time Delivered</th>
+                                <th>Dishes</th>
+                                <th>
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <% for( let i=0; i < orders.length; i++ ) { %>
+                            <tr>
+                                <td>
+                                    <%= orders[i].ord_id %>
+                                </td>
+                                <td>
+                                    <%=orders[i].name%>
+                                    
+                                </td>
+                                <td>
+                                    <%= orders[i].date.toLocaleDateString()%>
+                                </td>
+                                <td>
+                                    <%=orders[i].time_ordered%>
+                                </td>
+                                <td>
+                                    <%=orders[i].time_delivered%>
+                                </td>
+                                <td>
+                                <% for( let j=0; j < orderdishes.length; j++ ) { %>
+                                    <% if(orders[i].ord_id  ===   orderdishes[j].ord_id   ){ %>
+                                
+                                       <%=orderdishes[j].name%> (X<%=orderdishes[j].quantity%>)<br>
+                                
                                 <% } %>
 
+                                <% } %>
+                            </td>
+
+                            </tr>
+                            <% } %>
 
 
-            </main>
 
-
+        </main>
 </body>
 
 </html>
