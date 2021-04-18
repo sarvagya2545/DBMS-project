@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/select2.css">
     <link rel="stylesheet" href="/css/newOrder.css">
     <script src="/js/selectscript.js" defer></script>
+    <script src="/js/ordernew.js" defer></script>
 </head>
 
 <body>
@@ -29,35 +30,38 @@
 
             <main>
                 <h2 class="dash-title">New Order</h2>
-                <form action="" class="form-new-order">
-                    <select data-custom name="customer" class="customer">
-                        <option value="-">Select customer</option>
-                        <% for(let i=0; i < customers.length; i++) { %>
-                            <option value="<%= i %>">
-                                <%= customers[i].name %>
-                            </option>
-                            <% } %>
-                    </select>
+                <div class="food-items">
+                    <ul></ul>
+                </div>
 
-
-                    <select data-custom name="dish" class="dish">
-                        <option value="-">Select dish</option>
-                        <% for(var i=0; i < dishes.length; i++) { %>
-                            <option value="<%= i %>">
-                                <%= dishes[i].name %>
-                            </option>
-                            <% } %>
-                    </select>
-
-                    <button class="btn btn-primary">Add new customer</button>
-
-                    <label for="qty" class="labelqty">Quantity</label>
-                    <input type="number" min="1" class="qty" placeholder="quantity" name="quantity">
-
-                    <label for="seat" class="labelseat">Seat no</label>
-                    <input type="number" placeholder="Seat No" name="seat" class="seat">
-
-                    <button type="submit" class="btn btn-primary">Submit Order</button>
+                <!-- action="/dishes/add-order" method="POST" -->
+                <form class="form-new-order">
+                    <div class="form-group">
+                        <label for="dish" class="dishLabel">Add dish: </label>
+                        <select data-custom name="dish" class="dish">
+                            <option value="-">Select dish</option>
+                            <% for(var i=0; i < dishes.length; i++) { %>
+                                <option value="<%= i %>" data-price="<%= dishes[i].price %>">
+                                    <%= dishes[i].name %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <button class="btn btn-primary btn-add-dish">Add dish to order</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer" class="customerLabel">Customer name: </label>
+                        <select data-custom name="customer" class="customer">
+                            <option value="-">Select customer</option>
+                            <% for(let i=0; i < customers.length; i++) { %>
+                                <option value="<%= i %>">
+                                    <%= customers[i].name %>
+                                </option>
+                                <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-primary" type="submit">Submit Order</button>
+                    </div>
                 </form>
 
             </main>

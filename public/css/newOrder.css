@@ -3,18 +3,15 @@
     --main-color-light: #0291a1;
 }
 
-.form-new-order {
-    display: grid;
-    grid-template-areas: 
-        'customerInput dishInput'
-        'newCustomer .'
-        '. .'
-        'labelqty labelseat'
-        'qty seat'
-        'btn .'
-    ;
+.form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 
-    grid-gap: 10px;
+h2 {
+    font-size: 1.5em;
 }
 
 .btn {
@@ -48,10 +45,45 @@ input {
     grid-area: labelqty;
 }
 
-.labelseat {
-    grid-area: labelseat;
+/* Food items */
+.food-items {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    background-color: #fff;
+    margin: 10px 0;
 }
 
-.seat {
-    grid-area: seat;
+.food-item {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+}
+
+.qty {
+    display: flex;
+    width: 100px;
+    justify-content: space-around;
+}
+
+.qty button,
+.food-items li > button {
+    background-color: #e1e5e9;
+    border: none;
+    border-radius: 25px;
+    margin: 0 10px;
+    font-size: inherit;
+    padding: 0 10px;
+}
+
+.qty button:hover,
+.food-items li > button:hover {
+    background-color: var(--main-color);
+    color: #fff;
+    cursor: pointer;
+}
+
+.price {
+    margin-left: auto;
+    margin-right: 20px;
 }
