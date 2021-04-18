@@ -71,10 +71,11 @@ module.exports = {
 	profile: function (req, res) {
 		try {
 			console.log(req.user);
-			db.query("SELECT * FROM employees", (err, result) => {
-				console.log(result);
-				res.render("profile_new", { employees: result });
-			});
+			const { email, name, eid, contact, salary, designation } = req.user;
+			// db.query("SELECT * FROM employees", (err, result) => {
+			// 	// console.log(result);
+			// });
+			res.render("profile_new", { email, name, eid, contact, salary, designation });
 		} catch (error) {
 			console.log(error);
 		}
