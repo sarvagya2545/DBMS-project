@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="/css/dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,6 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="/dashboard/orders">
                         <span class="ti-clipboard"></span>
@@ -50,7 +50,7 @@
                 </li>
                 <li>
                     <a href="/dashboard/profile">
-                        <span class="ti-id-badge"></span>
+                        <span class="ti-book"></span>
                         <span>Profile</span>
                     </a>
                 </li>
@@ -81,9 +81,56 @@
             </div>
         </header>
         <main>
-            <h2 class="dash-title">Profile page</h2>
+            <h2 class="dash-title">Reports page</h2>
+            <canvas id="myChart" width="400" height="400"></canvas>
+      <script>
+            chartit();
+            async function chartit(){
+                var data= await getSales();       
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.xs ,
+                        datasets: [{
+                            label: '# of Votes',
+                            data: data.ys,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                                
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    
+        
+            <!--<script src="/js/chart.js"></script>-->
+            <% async function getSales()  %>
+            <% let xs=[] let ys=[] %>
+            <% for( let i=0 ; i< report.length;i++){  %>
+                <%ys.push(%><%=report.todaySales%><%)%>
+                <%xs.push(%><%=report.d%><%)%>
+                <% return {xs,ys} %>
+
+          
 
         </main>
+
 </body>
 
 </html>
+
+
+

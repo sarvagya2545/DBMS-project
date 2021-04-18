@@ -1,12 +1,27 @@
 const db = require("../config/db");
 
+
 module.exports = {
-	dashboard: function (req, res) {
+	dashboard: async function (req, res) {
 		try {
-			res.render("dashboard_1");
+			
+			const [employees] = await db.promise().query("SELECT * FROM employees");
+			const [orders] = await db.promise().query("SELECT * FROM orders");
+			const [orderstoday] = await db.promise().query("select * from orders where date = (select curdate());");
+			const [totalSales] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
+			const [currentorders] = await db.promise().query(" select * as orders_current from orders where time_delivered is NULL");
+			console.log(totalSales);
+			
+			
+             res.render("dashboard_1", { employees, orders, orderstoday, totalSales ,currentorders});
+
+			 console.log(JSON.stringify(totalSales));
+			
 		} catch (error) {
 			console.log(error);
 		}
+		
+
 	},
 
 	/*	tables: function (req, res) {
@@ -99,4 +114,29 @@ module.exports = {
 		}
 
 	},
+
+	reports: async function (req, res) {
+		try {
+			
+			const [report] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales, date as d from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
+			
+			console.log(report);
+			
+			
+             res.render("reports", {report});
+
+			 
+			
+		} catch (error) {
+			console.log(error);
+		}
+		
+
+	}
+
+
+	
 };
+			
+		
+	

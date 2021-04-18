@@ -451,3 +451,8 @@ tbody tr:nth-child(even) {
 		padding-right: 1rem;
 	}
 }
+
+canvas{
+	width:1500px !important ;
+	height: 500px  !important;
+}
