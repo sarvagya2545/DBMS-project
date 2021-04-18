@@ -75,7 +75,7 @@
 
         <header>
 
-            <h2 class="dash-welcome">Welcome, User123</h2>
+            <h2 class="dash-welcome">Welcome, <%=name%></h2>
             <!--<div class="search-wrapper">
                 <span class="ti-search"></span>
                 <input type="search" placeholder="Search">
@@ -126,10 +126,10 @@
                     <div class="card-body">
                         <span class="ti-reload"></span>
                         <div>
-                            <h5>Current Orders</h5>
+                            <h5>Open Orders</h5>
 
                             <h4>
-                                <%=currentorders.length%>
+                                <%=openOrder.length%>
                             </h4>
 
                             </h4>
@@ -148,10 +148,8 @@
                         <span class=ti-money></span>
                         <div>
                             <h5>Total Sales Today</h5>
-                            <% for(let i=0; i< totalSales.length; i++){ %>
-                                <h4>₹<%=totalSales[i].todaySales || 0%>
+                                <h4>₹ <%=totalSalesToday[0].todaySales%>
                                 </h4>
-                                <%}%>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -178,20 +176,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for(let i=0; i< orderstoday.length; i++){ %>
+                                    <% for(let i=0; i< recentOrders.length; i++){ %>
                                         <tr>
                                             <td>
-                                                <%=orderstoday[i].ord_id%>
+                                                <%=recentOrders[i].ord_id%>
                                             </td>
                                             <td>
-                                                <%=orderstoday[i].cid_id%>
+                                                <%=recentOrders[i].cid_id%>
                                             </td>
                                             <td>
-                                                <%=orderstoday[i].eid%>
+                                                <%=recentOrders[i].eid%>
                                             </td>
                                             <td>
                                                 <span class="timeOrder">
-                                                    <%=orderstoday[i].time_ordered%>
+                                                    <%=recentOrders[i].time_ordered%>
                                                 </span>
                                             </td>
 
