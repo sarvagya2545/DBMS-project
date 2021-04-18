@@ -12,11 +12,11 @@ module.exports = {
 			const [orderstoday] = await db.promise().query("select * from orders as orders_current  where date=current_date()");
 			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as ordercost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id group by ord_id;");
-			
+
 			console.log(totalSalesToday);
 
 
-			res.render("dashboard_1", { employees, orders, recentOrders, totalSalesToday, orderstoday,name,openOrder ,orderCost});
+			res.render("dashboard_1", { employees, orders, recentOrders, totalSalesToday, orderstoday, name, openOrder, orderCost });
 
 			console.log(JSON.stringify(totalSalesToday));
 
@@ -32,7 +32,7 @@ module.exports = {
 			const { email, name, eid, contact, salary, designation } = req.user;
 			db.query("SELECT * FROM customer", (err, result) => {
 				console.log(result);
-				res.render("customers", { customers: result,name });
+				res.render("customers", { customers: result, name });
 			});
 		} catch (error) {
 			console.log(error);
@@ -43,9 +43,6 @@ module.exports = {
 		try {
 			console.log(req.user);
 			const { email, name, eid, contact, salary, designation } = req.user;
-			// db.query("SELECT * FROM employees", (err, result) => {
-			// 	// console.log(result);
-			// });
 			res.render("profile_new", { email, name, eid, contact, salary, designation });
 		} catch (error) {
 			console.log(error);
@@ -54,7 +51,7 @@ module.exports = {
 
 	orders: async function (req, res) {
 		try {
-            const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id order by ord_id;");
+			const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id order by ord_id;");
 			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id group by ord_id;");
 			console.log(orders);
@@ -62,7 +59,7 @@ module.exports = {
 			const { email, name, eid, contact, salary, designation } = req.user;
 
 
-			res.render("orders", { orders, orderdishes,name, orderCost});
+			res.render("orders", { orders, orderdishes, name, orderCost });
 
 
 			// console.log(JSON.stringify(totalSalesToday));
@@ -78,7 +75,7 @@ module.exports = {
 				if (err) {
 					res.render("staff_management", { error: err });
 				}
-				res.render("staff_management", { staff: result ,name});
+				res.render("staff_management", { staff: result, name });
 			});
 		} catch (error) {
 			console.log(error);
@@ -108,7 +105,7 @@ module.exports = {
 			const report = null;
 
 
-			res.render("reports", { report ,name});
+			res.render("reports", { report, name });
 
 
 

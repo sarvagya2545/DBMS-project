@@ -105,42 +105,44 @@
                             </tr>
                         </thead>
                         <% var k=0; %>
-                        <% for( let i=0; i < orders.length; i++ ) { %>
-                            <tr>
-                                <td>
-                                    <%= orders[i].ord_id %>
-                                </td>
-                                <td>
-                                    <%=orders[i].name%>
+                            <% for( let i=0; i < orders.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%= orders[i].ord_id %>
+                                    </td>
+                                    <td>
+                                        <%=orders[i].name%>
 
-                                </td>
-                                <td>
-                                    <%= orders[i].date.toLocaleDateString()%>
-                                </td>
-                                <td>
-                                    <%=orders[i].time_ordered%>
-                                </td>
-                                <td>
-                                    <%=orders[i].time_delivered%>
-                                </td>
-                                <td>
-                                    <% for( let j=0; j < orderdishes.length; j++ ) { %>
-                                        <% if(orders[i].ord_id===orderdishes[j].ord_id ){ %>
+                                    </td>
+                                    <td>
+                                        <%= orders[i].date.toLocaleDateString()%>
+                                    </td>
+                                    <td>
+                                        <%=orders[i].time_ordered%>
+                                    </td>
+                                    <td>
+                                        <%=orders[i].time_delivered%>
+                                    </td>
+                                    <td>
+                                        <% for( let j=0; j < orderdishes.length; j++ ) { %>
+                                            <% if(orders[i].ord_id===orderdishes[j].ord_id ){ %>
 
-                                            <%=orderdishes[j].name%> (X<%=orderdishes[j].quantity%>)<br>
-
-                                                    <% } %>
+                                                <%=orderdishes[j].name%> (X<%=orderdishes[j].quantity%>)<br>
 
                                                         <% } %>
-                                </td>
-                                
-                                <% if(orders[i].ord_id===orderCost[k].ord_id ){ %>
 
-                                <td> &emsp; ₹<%= orderCost[k].cost %></td>
-                                <% k++; %>
+                                                            <% } %>
+                                    </td>
+
+
+                                    <td>
+                                        <% if(orders[i].ord_id===orderCost[k].ord_id ){ %>
+                                            ₹<%= orderCost[k].cost %>
+                                                <% k++; %>
+                                                    <% } %>
+                                    </td>
+                                </tr>
                                 <% } %>
-                            </tr>
-                            <% } %>
                     </table>
                 </div>
             </div>
