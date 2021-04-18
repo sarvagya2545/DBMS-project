@@ -71,10 +71,11 @@ module.exports = {
 	profile: function (req, res) {
 		try {
 			console.log(req.user);
-			db.query("SELECT * FROM employees", (err, result) => {
-				console.log(result);
-				res.render("profile_new", { employees: result });
-			});
+			const { email, name, eid, contact, salary, designation } = req.user;
+			// db.query("SELECT * FROM employees", (err, result) => {
+			// 	// console.log(result);
+			// });
+			res.render("profile_new", { email, name, eid, contact, salary, designation });
 		} catch (error) {
 			console.log(error);
 		}
@@ -122,9 +123,10 @@ module.exports = {
 	reports: async function (req, res) {
 		try {
 
-			const [report] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales, date as d from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
+			// const [report] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales, date as d from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
 
-			console.log(report);
+			// console.log(report);
+			const report = null;
 
 
 			res.render("reports", { report });

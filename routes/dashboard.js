@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const dashboardcontroller = require("../contollers/dashboardcontroller");
+const { ensureAuthenticated } = require('../middleware/auth');
 
-router.get("/", dashboardcontroller.dashboard);
+router.get("/", ensureAuthenticated, dashboardcontroller.dashboard);
 
 /*router.get("/tables", dashboardcontroller.tables);*/
-router.get("/customers", dashboardcontroller.customers);
-router.get("/profile", dashboardcontroller.profile);
-router.get("/orders", dashboardcontroller.orders);
-router.get("/staff_management", dashboardcontroller.staff_management);
-router.get("/reports", dashboardcontroller.reports);
-router.get('/newOrder', dashboardcontroller.newOrder);
+router.get("/customers", ensureAuthenticated, dashboardcontroller.customers);
+router.get("/profile", ensureAuthenticated, dashboardcontroller.profile);
+router.get("/orders", ensureAuthenticated, dashboardcontroller.orders);
+router.get("/staff_management", ensureAuthenticated, dashboardcontroller.staff_management);
+router.get("/reports", ensureAuthenticated, dashboardcontroller.reports);
+router.get('/newOrder', ensureAuthenticated, dashboardcontroller.newOrder);
 
 module.exports = router;
