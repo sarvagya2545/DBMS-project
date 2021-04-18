@@ -4,18 +4,20 @@ const db = require("../config/db");
 module.exports = {
 	dashboard: async function (req, res) {
 		try {
-
+			const { email, name, eid, contact, salary, designation } = req.user;
 			const [employees] = await db.promise().query("SELECT * FROM employees");
 			const [orders] = await db.promise().query("SELECT * FROM orders");
-			const [orderstoday] = await db.promise().query("select * from orders where date = (select curdate());");
-			const [totalSales] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
-			const [currentorders] = await db.promise().query("select * from orders as orders_current  where time_delivered is NULL");
-			console.log(totalSales);
+			const [recentOrders] = await db.promise().query("Select * from orders where (select current_time()) -time_ordered < 020000 and date=(select current_date()) and time_delivered is NULL;");
+			const [totalSalesToday] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
+			const [orderstoday] = await db.promise().query("select * from orders as orders_current  where date=current_date()");
+			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
+			
+			console.log(totalSalesToday);
 
 
-			res.render("dashboard_1", { employees, orders, orderstoday, totalSales, currentorders });
+			res.render("dashboard_1", { employees, orders, recentOrders, totalSalesToday, orderstoday,name,openOrder });
 
-			console.log(JSON.stringify(totalSales));
+			console.log(JSON.stringify(totalSalesToday));
 
 		} catch (error) {
 			console.log(error);
@@ -26,9 +28,10 @@ module.exports = {
 
 	customers: function (req, res) {
 		try {
+			const { email, name, eid, contact, salary, designation } = req.user;
 			db.query("SELECT * FROM customer", (err, result) => {
 				console.log(result);
-				res.render("customers", { customers: result });
+				res.render("customers", { customers: result,name });
 			});
 		} catch (error) {
 			console.log(error);
@@ -50,27 +53,31 @@ module.exports = {
 
 	orders: async function (req, res) {
 		try {
-			const [employees] = await db.promise().query("SELECT * FROM employees");
-			const [orders] = await db.promise().query("select c.name as custname,o.ord_id,date,time_ordered,time_delivered,d2.name as dishname from orders o,customer c,ordered_dishes d,dish d2 where c.cid=o.cid_id and d.ord_id=o.ord_id and d2.dish_id=d.dish_id;");
-			// const [dishes] = await db.promise().query("select * from ");
-			const [currentorders] = await db.promise().query("select * from orders as orders_current  where time_delivered is NULL");
+            const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id;");
+			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id;");
+			
 			console.log(orders);
 
+			const { email, name, eid, contact, salary, designation } = req.user;
 
-			res.render("orders", { orders});
 
-			// console.log(JSON.stringify(totalSales));
+			res.render("orders", { orders, orderdishes,name});
+
+
+			// console.log(JSON.stringify(totalSalesToday));
 		} catch (error) {
 			console.log(error);
 		}
 	},
 	staff_management: function (req, res) {
 		try {
+			const { email, name, eid, contact, salary, designation } = req.user;
+
 			db.query("SELECT * FROM employees", (err, result) => {
 				if (err) {
 					res.render("staff_management", { error: err });
 				}
-				res.render("staff_management", { staff: result });
+				res.render("staff_management", { staff: result ,name});
 			});
 		} catch (error) {
 			console.log(error);
@@ -93,14 +100,14 @@ module.exports = {
 
 	reports: async function (req, res) {
 		try {
-
+			const { email, name, eid, contact, salary, designation } = req.user;
 			// const [report] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales, date as d from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
 
 			// console.log(report);
 			const report = null;
 
 
-			res.render("reports", { report });
+			res.render("reports", { report ,name});
 
 
 
