@@ -4,9 +4,13 @@ const formNewOrder = document.querySelector('.form-new-order');
 let dishSelect = document.querySelector('select.dish');
 let dishVals = Array.from(dishSelect.children).map(child => ({
     name: child.innerHTML.trim(),
-    price: child.dataset['price']
+    price: child.dataset['price'],
+    id: child.dataset['id']
 }));
 let customerSelect = document.querySelector('select.customer');
+let customerVals = Array.from(customerSelect.children).map(child => ({
+    id: child.dataset['id']
+}));
 
 const foodItemHTMLString = `
     <li class="food-item" id="food-item-number-%ID%">
@@ -26,9 +30,11 @@ document.querySelector('.form-new-order').addEventListener('submit', submitOrder
 
 function submitOrder(e) {
     e.preventDefault();
+    console.log([parseInt(customerSelect.value) + 1])
+    console.log(customerVals[parseInt(customerSelect.value) + 1])
     var formData = {
         foodItems,
-        customer: customerSelect.value
+        customer: customerVals[parseInt(customerSelect.value) + 1].id
     }
 
     fetch('/dishes/add-order', {
@@ -39,6 +45,12 @@ function submitOrder(e) {
         },
         body: JSON.stringify(formData)
     })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 function addItem(e) {
@@ -60,7 +72,8 @@ function addItem(e) {
     foodItems.push({
         name: dishVals[parseInt(dishSelect.value) + 1].name,
         qty: 1,
-        price: dishVals[parseInt(dishSelect.value) + 1].price
+        price: dishVals[parseInt(dishSelect.value) + 1].price,
+        id: dishVals[parseInt(dishSelect.value) + 1].id
     })
 
 
