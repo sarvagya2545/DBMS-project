@@ -104,6 +104,7 @@
 
                             </tr>
                         </thead>
+                        <% var k=0; %>
                         <% for( let i=0; i < orders.length; i++ ) { %>
                             <tr>
                                 <td>
@@ -133,8 +134,11 @@
                                                         <% } %>
                                 </td>
                                 
+                                <% if(orders[i].ord_id===orderCost[k].ord_id ){ %>
 
-                                <td> &emsp; ₹<%=orderCost[i].ordercost%></td>
+                                <td> &emsp; ₹<%= orderCost[k].cost %></td>
+                                <% k++; %>
+                                <% } %>
                             </tr>
                             <% } %>
                     </table>
