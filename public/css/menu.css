@@ -1,0 +1,39 @@
+* {
+	font-family: "Poppins", sans-serif;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.navbar-brand {
+	color: #ffffff;
+}
+
+.navbar-custom {
+	background-color: #027581;
+}
+
+.bg-light {
+	background-color: #f1f5f9 !important;
+}
+
+.bg-indigo {
+	background-color: #045b64;
+	color: #000;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+.img-responsive {
+	height: 300px;
+	object-fit: cover;
+}

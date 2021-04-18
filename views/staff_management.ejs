@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/dash.css">
+</head>
+
+<body>
+    <%- include('partials/sidebar'); %>
+
+        <div class="main-content">
+
+            <header>
+
+                <h2 class="dash-welcome">Welcome, <%=name%></h2>
+
+                <div class="social-icons">
+                    <span class="ti-user"></span>
+
+                </div>
+            </header>
+
+
+            <main>
+                <div class="activity-card">
+                    <h3>Our Staff</h3>
+
+                    <div class="table-responsive">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Staff ID</th>
+                                    <th>Staff Name</th>
+                                    <th>Designation</th>
+                                    <th>Salary</th>
+                                    <th>Contact Number</th>
+                                    <th>Email Address</th>
+                                </tr>
+                            </thead>
+
+
+                            <% for( let i=0; i < staff.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%= staff[i].eid %>
+                                    </td>
+                                    <td>
+                                        <%=staff[i].name%>
+                                    </td>
+                                    <td>
+                                        <%=staff[i].designation%>
+                                    </td>
+                                    <td>
+                                        ₹ <%=staff[i].salary%>
+                                    </td>
+                                    <td>
+                                        <%=staff[i].contact%>
+                                    </td>
+                                    <td>
+                                        <%=staff[i].email%>
+                                    </td>
+
+                                </tr>
+                                <% } %>
+
+
+
+
+
+            </main>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/dash.css">
+</head>
+
+<body>
+    <%- include('partials/sidebar'); %>
+        <div class="main-content">
+
+            <header>
+
+                <h2 class="dash-welcome">Welcome, <%=name%></h2>
+
+                <div class="social-icons">
+                    <span class="ti-user"></span>
+
+                </div>
+            </header>
+
+
+            <main>
+                <div class="activity-card">
+                    <h3>Our Customers</h3>
+
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Contact Number</th>
+                                    <th>Email Address</th>
+
+
+                                </tr>
+                            </thead>
+
+
+                            <% for( let i=0; i < customers.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%= customers[i].cid %>
+                                    </td>
+                                    <td>
+                                        <%=customers[i].name%>
+                                    </td>
+                                    <td>
+                                        <%=customers[i].contact%>
+                                    </td>
+                                    <td>
+                                        <%=customers[i].email%>
+                                    </td>
+
+                                </tr>
+                                <% } %>
+
+            </main>
+</body>
+
+</html>

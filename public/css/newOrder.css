@@ -1,0 +1,57 @@
+:root {
+    --main-color: #027581;
+    --main-color-light: #0291a1;
+}
+
+.form-new-order {
+    display: grid;
+    grid-template-areas: 
+        'customerInput dishInput'
+        'newCustomer .'
+        '. .'
+        'labelqty labelseat'
+        'qty seat'
+        'btn .'
+    ;
+
+    grid-gap: 10px;
+}
+
+.btn {
+    grid-area: btn;
+
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.customer {
+    grid-area: customerInput;
+}
+
+.dish {
+    grid-area: dishInput;
+}
+
+.btn-new-customer {
+    grid-area: newCustomer;
+}
+
+.qty {
+    grid-area: qty;
+}
+
+.labelqty {
+    grid-area: labelqty;
+}
+
+.labelseat {
+    grid-area: labelseat;
+}
+
+.seat {
+    grid-area: seat;
+}
