@@ -77,8 +77,10 @@
 
         <header>
 
-            <h2 class="dash-welcome">Welcome, User123</h2>
-            <!--<div class="search-wrapper">
+
+                <h2 class="dash-welcome">Welcome, <%=name%></h2>
+                <!--<div class="search-wrapper">
+
                 <span class="ti-search"></span>
                 <input type="search" placeholder="Search">
             </div>-->
@@ -207,9 +209,43 @@
 
 
 
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer ID</th>
+                                            <th>Employee ID</th>
+                                            <th>Time Ordered</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let i=0; i< orderstoday.length; i++){ %>
+                                            <tr>
+                                                <td>
+                                                    <%=orderstoday[i].ord_id%>
+                                                </td>
+                                                <td>
+                                                    <%=orderstoday[i].cid_id%>
+                                                </td>
+                                                <td>
+                                                    <%=orderstoday[i].eid%>
+                                                </td>
+                                                <td>
+                                                    <span class="timeOrder">
+                                                        <%=orderstoday[i].time_ordered%>
+                                                    </span>
+                                                </td>
 
-                                </tbody>
-                            </table>
+                                                <td>
+                                                    <span class="badge warning">Pending</span>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
@@ -236,15 +272,13 @@
                             </div>
                         </div>
 
-
-
-
                     </div>
-                </div>
-    </div>
-    </section>
-
-    </main>
+                    <a class="btn-primary" href="/dashboard/newOrder">
+                        Add order
+                    </a>
+        </div>
+        </section>
+        </main>
 
     </div>
 

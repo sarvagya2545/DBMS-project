@@ -4,7 +4,7 @@ const db = require("../config/db");
 module.exports = {
 	dashboard: async function (req, res) {
 		try {
-
+			const { email, name, eid, contact, salary, designation } = req.user;
 			const [employees] = await db.promise().query("SELECT * FROM employees");
 			const [orders] = await db.promise().query("SELECT * FROM orders");
 			const [orderstoday] = await db.promise().query("select * from orders where date = (select curdate());");
@@ -13,7 +13,7 @@ module.exports = {
 			console.log(totalSales);
 
 
-			res.render("dashboard_1", { employees, orders, orderstoday, totalSales, currentorders });
+			res.render("dashboard_1", { employees, orders, orderstoday, totalSales, currentorders,name });
 
 			console.log(JSON.stringify(totalSales));
 
@@ -26,9 +26,10 @@ module.exports = {
 
 	customers: function (req, res) {
 		try {
+			const { email, name, eid, contact, salary, designation } = req.user;
 			db.query("SELECT * FROM customer", (err, result) => {
 				console.log(result);
-				res.render("customers", { customers: result });
+				res.render("customers", { customers: result,name });
 			});
 		} catch (error) {
 			console.log(error);
@@ -55,8 +56,11 @@ module.exports = {
 			
 			console.log(orders);
 
+			const { email, name, eid, contact, salary, designation } = req.user;
 
-			res.render("orders", { orders, orderdishes});
+
+			res.render("orders", { orders, orderdishes,name});
+
 
 			// console.log(JSON.stringify(totalSales));
 		} catch (error) {
@@ -65,11 +69,13 @@ module.exports = {
 	},
 	staff_management: function (req, res) {
 		try {
+			const { email, name, eid, contact, salary, designation } = req.user;
+
 			db.query("SELECT * FROM employees", (err, result) => {
 				if (err) {
 					res.render("staff_management", { error: err });
 				}
-				res.render("staff_management", { staff: result });
+				res.render("staff_management", { staff: result ,name});
 			});
 		} catch (error) {
 			console.log(error);
@@ -92,14 +98,14 @@ module.exports = {
 
 	reports: async function (req, res) {
 		try {
-
+			const { email, name, eid, contact, salary, designation } = req.user;
 			// const [report] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales, date as d from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
 
 			// console.log(report);
 			const report = null;
 
 
-			res.render("reports", { report });
+			res.render("reports", { report ,name});
 
 
 
