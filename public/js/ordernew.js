@@ -105,7 +105,7 @@ function updateQtyAndPrice(index, increment) {
         if (item.name == dishVals[index + 1].name) {
             return ({
                 ...item,
-                qty: item.qty + 1
+                qty: increment ? item.qty + 1 : item.qty - 1
             })
         }
         return item;

@@ -70,7 +70,8 @@
 
         <header>
 
-            <h2 class="dash-welcome">Welcome, <%=name%></h2>
+            <h2 class="dash-welcome">Welcome, <%=name%>
+            </h2>
 
             <div class="social-icons">
                 <span class="ti-user"></span>
@@ -79,8 +80,12 @@
         </header>
 
         <main>
-            <h2 class="dash-title">Orders</h2>
+            <a class="btn-primary" href="/dashboard/newOrder">
+                Add order
+            </a>
+
             <div class="activity-card">
+                <h3 class="dash-title">Orders</h3>
                 <div class="table-responsive">
                     <table>
                         <thead>
@@ -105,7 +110,7 @@
                                 </td>
                                 <td>
                                     <%=orders[i].name%>
-                                    
+
                                 </td>
                                 <td>
                                     <%= orders[i].date.toLocaleDateString()%>
@@ -117,19 +122,21 @@
                                     <%=orders[i].time_delivered%>
                                 </td>
                                 <td>
-                                <% for( let j=0; j < orderdishes.length; j++ ) { %>
-                                    <% if(orders[i].ord_id  ===   orderdishes[j].ord_id   ){ %>
-                                
-                                       <%=orderdishes[j].name%> (X<%=orderdishes[j].quantity%>)<br>
-                                
-                                <% } %>
+                                    <% for( let j=0; j < orderdishes.length; j++ ) { %>
+                                        <% if(orders[i].ord_id===orderdishes[j].ord_id ){ %>
 
-                                <% } %>
-                            </td>
+                                            <%=orderdishes[j].name%> (X<%=orderdishes[j].quantity%>)<br>
+
+                                                    <% } %>
+
+                                                        <% } %>
+                                </td>
 
                             </tr>
                             <% } %>
-
+                    </table>
+                </div>
+            </div>
 
 
         </main>
