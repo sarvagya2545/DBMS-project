@@ -50,14 +50,13 @@ module.exports = {
 
 	orders: async function (req, res) {
 		try {
-			const [employees] = await db.promise().query("SELECT * FROM employees");
-			const [orders] = await db.promise().query("select c.name as custname,o.ord_id,date,time_ordered,time_delivered,d2.name as dishname from orders o,customer c,ordered_dishes d,dish d2 where c.cid=o.cid_id and d.ord_id=o.ord_id and d2.dish_id=d.dish_id;");
-			// const [dishes] = await db.promise().query("select * from ");
-			const [currentorders] = await db.promise().query("select * from orders as orders_current  where time_delivered is NULL");
+            const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id;");
+			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id;");
+			
 			console.log(orders);
 
 
-			res.render("orders", { orders});
+			res.render("orders", { orders, orderdishes});
 
 			// console.log(JSON.stringify(totalSales));
 		} catch (error) {
