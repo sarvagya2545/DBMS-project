@@ -42,7 +42,8 @@
                         <select data-custom name="dish" class="dish">
                             <option value="-">Select dish</option>
                             <% for(var i=0; i < dishes.length; i++) { %>
-                                <option value="<%= i %>" data-price="<%= dishes[i].price %>">
+                                <option value="<%= i %>" data-price="<%= dishes[i].price %>"
+                                    data-id="<%= dishes[i].dish_id %>">
                                     <%= dishes[i].name %>
                                 </option>
                                 <% } %>
@@ -54,7 +55,7 @@
                         <select data-custom name="customer" class="customer">
                             <option value="-">Select customer</option>
                             <% for(let i=0; i < customers.length; i++) { %>
-                                <option value="<%= i %>">
+                                <option value="<%= i %>" data-id="<%= customers[i].cid %>">
                                     <%= customers[i].name %>
                                 </option>
                                 <% } %>
