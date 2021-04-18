@@ -1,14 +1,14 @@
-
-
+       chartit();
+    async function chartit(){
             var data= await getSales();       
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: xs ,
+                    labels: data.xs ,
                     datasets: [{
                         label: '# of Votes',
-                        data: ys,
+                        data: data.ys,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         
                         borderColor: 'rgba(255, 99, 132, 1)',
@@ -26,8 +26,7 @@
                     }
                 }
             });
-
-
+        }
 
 
 async function getSales(){
@@ -36,11 +35,10 @@ async function getSales(){
 
     for(let i=0; i<report.length;i++){
 
-    var ydata= report[i].todaySales;
-    ys.push(ydata);
-    var xdata= report[i].date;
-    xs.push(xdata);
+    
+    ys.push(report[i].todaySales);
+    xs.push(report[i].d);
     }
 
     return {xs,ys};
-}
+}          
