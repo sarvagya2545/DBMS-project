@@ -10,119 +10,57 @@
 </head>
 
 <body>
-    <input type="checkbox" id="sidebar-toggle">
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3 class="brand">
-                <span class="ti-unlink"></span>
-                <span>dbmsproject</span>
-            </h3>
-            <label for="sidebar-toggle" class="ti-menu-alt"></label>
-        </div>
+    <%- include('partials/sidebar'); %>
+        <div class="main-content">
 
-        <div class="sidebar-menu">
-            <ul>
-                <li>
-                    <a href="/dashboard">
-                        <span class="ti-home"></span>
-                        <span>Home</span>
-                    </a>
-                </li>
+            <header>
+
+                <h2 class="dash-welcome">Welcome, User123</h2>
+
+                <div class="social-icons">
+                    <span class="ti-user"></span>
+
+                </div>
+            </header>
 
 
-                <li>
-                    <a href="/dashboard/orders">
-                        <span class="ti-clipboard"></span>
-                        <span>Orders</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/customers">
-                        <span class="ti-folder"></span>
-                        <span>Customers</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/staff_management">
-                        <span class="ti-time"></span>
-                        <span>Staff Management</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/profile">
-                        <span class="ti-id-badge"></span>
-                        <span>Profile</span>
-                    </a>
-                </li>
+            <main>
+                <div class="activity-card">
+                    <h3>Our Customers</h3>
 
-                <li>
-                    <a href="/dashboard/reports">
-                        <span class="ti-pie-chart"></span>
-                        <span>Reports</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="main-content">
-
-        <header>
-
-            <h2 class="dash-welcome">Welcome, User123</h2>
-
-            <div class="social-icons">
-                <span class="ti-user"></span>
-
-            </div>
-        </header>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Contact Number</th>
+                                    <th>Email Address</th>
 
 
-        <main>
-            <div class="activity-card">
-                <h3>Our Customers</h3>
-
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Customer ID</th>
-                                <th>Customer Name</th>
-                                <th>Contact Number</th>
-                                <th>Email Address</th>
+                                </tr>
+                            </thead>
 
 
-                            </tr>
-                        </thead>
+                            <% for( let i=0; i < customers.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%= customers[i].cid %>
+                                    </td>
+                                    <td>
+                                        <%=customers[i].name%>
+                                    </td>
+                                    <td>
+                                        <%=customers[i].contact%>
+                                    </td>
+                                    <td>
+                                        <%=customers[i].email%>
+                                    </td>
 
+                                </tr>
+                                <% } %>
 
-                        <% for( let i=0; i < customers.length; i++ ) { %>
-                            <tr>
-                                <td>
-                                    <%= customers[i].cid %>
-                                </td>
-                                <td>
-                                    <%=customers[i].name%>
-                                </td>
-                                <td>
-                                    <%=customers[i].contact%>
-                                </td>
-                                <td>
-                                    <%=customers[i].email%>
-                                </td>
-
-                            </tr>
-                            <% } %>
-
-
-
-
-
-        </main>
-
-
-
-
+            </main>
 </body>
 
 </html>

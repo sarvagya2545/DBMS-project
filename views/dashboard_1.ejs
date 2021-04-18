@@ -11,90 +11,31 @@
 
 <body>
 
-    <input type="checkbox" id="sidebar-toggle">
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3 class="brand">
-                <span class="ti-unlink"></span>
-                <span>dbmsproject</span>
-            </h3>
-            <label for="sidebar-toggle" class="ti-menu-alt"></label>
-        </div>
-
-        <div class="sidebar-menu">
-            <ul>
-                <li>
-                    <a href="/dashboard">
-                        <span class="ti-home"></span>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <!-- <li>
-                    <a href="/dashboard/tables">
-                        <span class="ti-face-smile"></span>
-                        <span>Tables</span>
-                    </a>
-                </li>-->
+    <%- include('partials/sidebar'); %>
 
 
-                <li>
-                    <a href="/dashboard/orders">
-                        <span class="ti-clipboard"></span>
-                        <span>Orders</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/customers">
-                        <span class="ti-folder"></span>
-                        <span>Customers</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/staff_management">
-                        <span class="ti-time"></span>
-                        <span>Staff Management</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/profile">
-                        <span class="ti-id-badge"></span>
-                        <span>Profile</span>
-                    </a>
-                </li>
+        <div class="main-content">
 
-                <li>
-                    <a href="/dashboard/reports">
-                        <span class="ti-pie-chart"></span>
-                        <span>Reports</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+            <header>
 
-
-    <div class="main-content">
-
-        <header>
-
-            <h2 class="dash-welcome">Welcome, User123</h2>
-            <!--<div class="search-wrapper">
+                <h2 class="dash-welcome">Welcome, User123</h2>
+                <!--<div class="search-wrapper">
                 <span class="ti-search"></span>
                 <input type="search" placeholder="Search">
             </div>-->
 
-            <div class="social-icons">
-                <a href="/dashboard/profile"> <span class="ti-user"></span></a>
+                <div class="social-icons">
+                    <a href="/dashboard/profile"> <span class="ti-user"></span></a>
 
-            </div>
-        </header>
+                </div>
+            </header>
 
-        <main>
+            <main>
 
-            <h2 class="dash-title">Overview</h2>
+                <h2 class="dash-title">Overview</h2>
 
-            <div class="dash-cards">
-                <!--<div class="card-single">
+                <div class="dash-cards">
+                    <!--<div class="card-single">
                     <div class="card-body">
                         <span class="ti-briefcase"></span>
                         <div>
@@ -109,144 +50,144 @@
                    
                 </div>-->
 
-                <div class="card-single">
-                    <div class="card-body">
-                        <span class="ti-check-box"></span>
-                        <div>
-                            <h5>Total Orders Today</h5>
-                            <h4>
-                                <%=orderstoday.length%>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="/dashboard/orders">View all Orders</a>
-                    </div>
-                </div>
-
-                <div class="card-single">
-                    <div class="card-body">
-                        <span class="ti-reload"></span>
-                        <div>
-                            <h5>Current Orders</h5>
-
-                            <h4>
-                                <%=currentorders.length%>
-                            </h4>
-
-                            </h4>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        <a href="/dashboard/orders">View Current Orders</a>
-                    </div>
-
-
-
-                </div>
-                <div class="card-single">
-                    <div class="card-body">
-                        <span class=ti-money></span>
-                        <div>
-                            <h5>Total Sales Today</h5>
-                            <% for(let i=0; i< totalSales.length; i++){ %>
-                                <h4>₹<%=totalSales[i].todaySales || 0%>
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class="ti-check-box"></span>
+                            <div>
+                                <h5>Total Orders Today</h5>
+                                <h4>
+                                    <%=orderstoday.length%>
                                 </h4>
-                                <%}%>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/dashboard/orders">View all Orders</a>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="/dashboard/orders">View All Orders</a>
+
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class="ti-reload"></span>
+                            <div>
+                                <h5>Current Orders</h5>
+
+                                <h4>
+                                    <%=currentorders.length%>
+                                </h4>
+
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <a href="/dashboard/orders">View Current Orders</a>
+                        </div>
+
+
+
+                    </div>
+                    <div class="card-single">
+                        <div class="card-body">
+                            <span class=ti-money></span>
+                            <div>
+                                <h5>Total Sales Today</h5>
+                                <% for(let i=0; i< totalSales.length; i++){ %>
+                                    <h4>₹<%=totalSales[i].todaySales || 0%>
+                                    </h4>
+                                    <%}%>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/dashboard/orders">View All Orders</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <section class="recent">
-                <div class="activity-grid">
-                    <div class="activity-card">
-                        <h3>Recent Orders</h3>
+                <section class="recent">
+                    <div class="activity-grid">
+                        <div class="activity-card">
+                            <h3>Recent Orders</h3>
 
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer ID</th>
-
-                                        <th>Employee ID</th>
-                                        <th>Time Ordered</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for(let i=0; i< orderstoday.length; i++){ %>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <%=orderstoday[i].ord_id%>
-                                            </td>
-                                            <td>
-                                                <%=orderstoday[i].cid_id%>
-                                            </td>
-                                            <td>
-                                                <%=orderstoday[i].eid%>
-                                            </td>
-                                            <td>
-                                                <span class="timeOrder">
-                                                    <%=orderstoday[i].time_ordered%>
-                                                </span>
-                                            </td>
+                                            <th>Order ID</th>
+                                            <th>Customer ID</th>
 
-                                            <td>
-                                                <span class="badge warning">Pending</span>
-                                            </td>
+                                            <th>Employee ID</th>
+                                            <th>Time Ordered</th>
+                                            <th>Status</th>
                                         </tr>
-                                        <% } %>
+                                    </thead>
+                                    <tbody>
+                                        <% for(let i=0; i< orderstoday.length; i++){ %>
+                                            <tr>
+                                                <td>
+                                                    <%=orderstoday[i].ord_id%>
+                                                </td>
+                                                <td>
+                                                    <%=orderstoday[i].cid_id%>
+                                                </td>
+                                                <td>
+                                                    <%=orderstoday[i].eid%>
+                                                </td>
+                                                <td>
+                                                    <span class="timeOrder">
+                                                        <%=orderstoday[i].time_ordered%>
+                                                    </span>
+                                                </td>
+
+                                                <td>
+                                                    <span class="badge warning">Pending</span>
+                                                </td>
+                                            </tr>
+                                            <% } %>
 
 
 
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="summary">
-                        <div class="summary-card">
-                            <div class="summary-single">
-                                <span class="ti-id-badge"></span>
-                                <div>
-                                    <h5>
-                                        <%=employees.length %>
-                                    </h5>
-                                    <small>Number of staff</small>
+                        <div class="summary">
+                            <div class="summary-card">
+                                <div class="summary-single">
+                                    <span class="ti-id-badge"></span>
+                                    <div>
+                                        <h5>
+                                            <%=employees.length %>
+                                        </h5>
+                                        <small>Number of staff</small>
+                                    </div>
+                                </div>
+
+                                <div class="summary-single">
+                                    <span class="ti-face-smile"></span>
+                                    <div>
+                                        <h5>
+                                            <%=orders.length %>
+                                        </h5>
+                                        <small>Total Orders Served by us</small>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="summary-single">
-                                <span class="ti-face-smile"></span>
-                                <div>
-                                    <h5>
-                                        <%=orders.length %>
-                                    </h5>
-                                    <small>Total Orders Served by us</small>
-                                </div>
-                            </div>
+
+
+
                         </div>
-
-
-
-
                     </div>
-                </div>
-    </div>
-    </section>
+        </div>
+        </section>
 
-    </main>
+        </main>
 
-    </div>
+        </div>
 
 </body>
 
