@@ -70,7 +70,11 @@ module.exports = {
 
 	profile: function (req, res) {
 		try {
-			res.render("profile");
+			console.log(req.user);
+			db.query("SELECT * FROM employees", (err, result) => {
+				console.log(result);
+				res.render("profile_new", { employees: result });
+			});
 		} catch (error) {
 			console.log(error);
 		}
