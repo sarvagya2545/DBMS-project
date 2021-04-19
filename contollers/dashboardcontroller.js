@@ -78,9 +78,56 @@ module.exports = {
 				orderCostObj[orderCost[i].ord_id] = orderCost[i].cost;
 			}
 
-			res.render("orders", { orders, orderdishes, name, orderCostObj });
+			res.render("orders", { orders, orderdishes, name, orderCostObj, timeDelivered: true, addOrderBtn: true, fulfillOrders: false });
 
 			// console.log(JSON.stringify(totalSalesToday));
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	openOrders: async function (req, res) {
+		try {
+			const { name } = req.user;
+			const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered from orders, customer where customer.cid = orders.cid_id and time_delivered is null order by ord_id;");
+			const [orderdishes] = await db.promise().query(`
+				select ordered_dishes.ord_id, dish.name, quantity
+				from dish, orders, ordered_dishes 
+				where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and time_delivered is null
+			`);
+			let [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and time_delivered is null group by ord_id;");
+
+			orderCostObj = {};
+
+			for (let i = 0; i < orderCost.length; i++) {
+				orderCostObj[orderCost[i].ord_id] = orderCost[i].cost;
+			}
+
+			console.log(orders);
+			res.render("orders", { orders, orderdishes, name, timeDelivered: false, addOrderBtn: false, fulfillOrders: true })
+
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	soldOrders: async function (req, res) {
+		try {
+			const { name } = req.user;
+			const [orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and time_delivered is not null order by ord_id;");
+			const [orderdishes] = await db.promise().query(`
+				select ordered_dishes.ord_id, dish.name, quantity
+				from dish, orders, ordered_dishes 
+				where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and time_delivered is not null
+			`);
+			let [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and time_delivered is not null group by ord_id;");
+
+			orderCostObj = {};
+
+			for (let i = 0; i < orderCost.length; i++) {
+				orderCostObj[orderCost[i].ord_id] = orderCost[i].cost;
+			}
+
+			console.log(orders);
+			res.render("orders", { orders, orderdishes, name, timeDelivered: true, addOrderBtn: false, fulfillOrders: false })
 		} catch (error) {
 			console.log(error);
 		}

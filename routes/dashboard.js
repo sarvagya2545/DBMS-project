@@ -9,6 +9,8 @@ router.get("/", ensureAuthenticated, dashboardcontroller.dashboard);
 router.get("/customers", ensureAuthenticated, dashboardcontroller.customers);
 router.get("/profile", ensureAuthenticated, dashboardcontroller.profile);
 router.get("/orders", ensureAuthenticated, dashboardcontroller.orders);
+router.get("/open-orders", ensureAuthenticated, dashboardcontroller.openOrders);
+router.get("/sold-orders", ensureAuthenticated, dashboardcontroller.soldOrders);
 router.get("/staff_management", ensureAuthenticated, dashboardcontroller.staff_management);
 router.get("/reports", ensureAuthenticated, dashboardcontroller.reports);
 router.get('/newOrder', ensureAuthenticated, dashboardcontroller.newOrder);
