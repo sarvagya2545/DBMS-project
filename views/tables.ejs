@@ -71,19 +71,9 @@
 
     <header>
 
-      <h2 class="dash-welcome">Welcome, User123</h2>
-      <!--<div class="search-wrapper">
-              <span class="ti-search"></span>
-              <input type="search" placeholder="Search">
-          </div>-->
+      <%- include('partials/top', { name }) %>
 
-      <div class="social-icons">
-        <span class="ti-user"></span>
-
-      </div>
-    </header>
-
-    <!--header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <!--header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Restaurant name</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -189,9 +179,9 @@
         </div>
       </div>-->
 
-    <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+        <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
-    <!-- <div class="table-responsive">
+        <!-- <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -199,56 +189,56 @@
               <th>Booked by</th>
               <th>Capacity</th>
               <th>Available</th>-->
-    <!-- <th>Status</th> -->
-    <!-- </tr>
+        <!-- <th>Status</th> -->
+        <!-- </tr>
           </thead>
           <tbody> -->
-    <main>
+        <main>
 
-      <!-- <section class="recent">-->
-      <!--<div class="activity-grid">-->
-      <div class="activity-card">
-        <h3>Table Occupancy</h3>
+          <!-- <section class="recent">-->
+          <!--<div class="activity-grid">-->
+          <div class="activity-card">
+            <h3>Table Occupancy</h3>
 
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th>Table Number</th>
-                <th>Customer Name</th>
-                <th>capacity</th>
-                <th>Availability</th>
-
-
-              </tr>
-            </thead>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Table Number</th>
+                    <th>Customer Name</th>
+                    <th>capacity</th>
+                    <th>Availability</th>
 
 
-            <% for( let i=0; i < tables.length; i++ ) { %>
-              <tr>
-                <td>
-                  <%= tables[i].tableID %>
-                </td>
-                <td>
-                  <%=tables[i].BookedBy%>
-                </td>
-                <td>
-                  <%=tables[i].Capacity%>
-                </td>
-                <td>
-                  <%=tables[i].Availability%> <a href="myfunc()"><img
-                        src="https://img.icons8.com/small/16/000000/change.png" id="change_status"
-                        onclick="myfunc()" /></a>
-                </td>
-                <!-- <td><%=tables[i].Status%></td> -->
-              </tr>
-              <% } %>
+                  </tr>
+                </thead>
 
 
+                <% for( let i=0; i < tables.length; i++ ) { %>
+                  <tr>
+                    <td>
+                      <%= tables[i].tableID %>
+                    </td>
+                    <td>
+                      <%=tables[i].BookedBy%>
+                    </td>
+                    <td>
+                      <%=tables[i].Capacity%>
+                    </td>
+                    <td>
+                      <%=tables[i].Availability%> <a href="myfunc()"><img
+                            src="https://img.icons8.com/small/16/000000/change.png" id="change_status"
+                            onclick="myfunc()" /></a>
+                    </td>
+                    <!-- <td><%=tables[i].Status%></td> -->
+                  </tr>
+                  <% } %>
 
 
 
-    </main>
+
+
+        </main>
 
 
 

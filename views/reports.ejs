@@ -11,99 +11,90 @@
 
 <body>
 
-    <%- include('partials/sidebar'); %>
+    <%- include('partials/sidebar', { isAdmin }); %>
 
 
         <div class="main-content">
 
-            <header>
+            <%- include('partials/top', { name }) %>
 
-                <h2 class="dash-welcome">Welcome, <%=name%></h2>
+                <main>
+                    <div class="activity-card">
+                        <h3 class="dash-title">Available Reports</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Report Name</th>
+                                        <th>Description</th>
+                                        <th></th>
 
 
-                <div class="social-icons">
-                    <a href="/dashboard/profile"> <span class="ti-user"></span></a>
+                                    </tr>
+                                </thead>
 
-                </div>
-            </header>
-
-            <main>
-                <div class="activity-card">
-                    <h3 class="dash-title">Available Reports</h3>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Report Name</th>
-                                    <th>Description</th>
-                                    <th></th>
-
-
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        Generate orders served for all time
+                                    </td>
+                                    <td>
+                                        desc
+                                    </td>
+                                    <td>
+                                        <a class="btn-secondary" href="/dashboard/orders"> Generate report</a>
+                                    </td>
                                 </tr>
-                            </thead>
 
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    Generate orders served for all time
-                                </td>
-                                <td>
-                                    desc
-                                </td>
-                                <td>
-                                    <a class="btn-secondary" href="/dashboard/orders"> Generate report</a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    Generate all customer data
-                                </td>
-                                <td>
-                                    desc
-                                </td>
-                                <td>
-                                    <a class="btn-secondary" href="/dashboard/customers"> Generate report</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    Generate all employee data
-                                </td>
-                                <td>
-                                    desc
-                                </td>
-                                <td>
-                                    <a class="btn-secondary" href="/dashboard/staff_management"> Generate report</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    4
-                                </td>
-                                <td>
-                                    Generate Menu
-                                </td>
-                                <td>
-                                    desc
-                                </td>
-                                <td>
-                                    <a class="btn-secondary" href="/"> Generate report</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        2
+                                    </td>
+                                    <td>
+                                        Generate all customer data
+                                    </td>
+                                    <td>
+                                        desc
+                                    </td>
+                                    <td>
+                                        <a class="btn-secondary" href="/dashboard/customers"> Generate report</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        3
+                                    </td>
+                                    <td>
+                                        Generate all employee data
+                                    </td>
+                                    <td>
+                                        desc
+                                    </td>
+                                    <td>
+                                        <a class="btn-secondary" href="/dashboard/staff_management"> Generate report</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        4
+                                    </td>
+                                    <td>
+                                        Generate Menu
+                                    </td>
+                                    <td>
+                                        desc
+                                    </td>
+                                    <td>
+                                        <a class="btn-secondary" href="/"> Generate report</a>
+                                    </td>
+                                </tr>
 
 
 
-        </main>
+                </main>
 
         </div>
 

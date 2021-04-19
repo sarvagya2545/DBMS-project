@@ -30,7 +30,7 @@ module.exports = {
 			})
 
 
-			res.render("dashboard_1", { employees, orders, dashboardDetails, totalSalesToday, orderstoday, name, openOrder, orderCost, orderdishes: pendingOrderDishes });
+			res.render("dashboard_1", { employees, orders, dashboardDetails, totalSalesToday, orderstoday, name, openOrder, orderCost, orderdishes: pendingOrderDishes, isAdmin: req.user.designation === 'Admin' });
 
 			console.log(JSON.stringify(totalSalesToday));
 
@@ -46,7 +46,7 @@ module.exports = {
 			const { email, name, eid, contact, salary, designation } = req.user;
 			db.query("SELECT * FROM customer", (err, result) => {
 				console.log(result);
-				res.render("customers", { customers: result, name });
+				res.render("customers", { customers: result, name, isAdmin: req.user.designation === 'Admin' });
 			});
 		} catch (error) {
 			console.log(error);
@@ -78,7 +78,7 @@ module.exports = {
 				orderCostObj[orderCost[i].ord_id] = orderCost[i].cost;
 			}
 
-			res.render("orders", { orders, orderdishes, name, orderCostObj, timeDelivered: true, addOrderBtn: true, fulfillOrders: false });
+			res.render("orders", { orders, orderdishes, name, orderCostObj, timeDelivered: true, addOrderBtn: true, fulfillOrders: false, isAdmin: req.user.designation === 'Admin' });
 
 			// console.log(JSON.stringify(totalSalesToday));
 		} catch (error) {
@@ -103,7 +103,7 @@ module.exports = {
 			}
 
 			console.log(orders);
-			res.render("orders", { orders, orderdishes, name, timeDelivered: false, addOrderBtn: false, fulfillOrders: true })
+			res.render("orders", { orders, orderdishes, name, timeDelivered: false, addOrderBtn: false, fulfillOrders: true, isAdmin: req.user.designation === 'Admin' })
 
 		} catch (error) {
 			console.log(error);
@@ -127,7 +127,7 @@ module.exports = {
 			}
 
 			console.log(orders);
-			res.render("orders", { orders, orderdishes, name, timeDelivered: true, addOrderBtn: false, fulfillOrders: false })
+			res.render("orders", { orders, orderdishes, name, timeDelivered: true, addOrderBtn: false, fulfillOrders: false, isAdmin: req.user.designation === 'Admin' })
 		} catch (error) {
 			console.log(error);
 		}
@@ -140,7 +140,7 @@ module.exports = {
 				if (err) {
 					res.render("staff_management", { error: err });
 				}
-				res.render("staff_management", { staff: result, name });
+				res.render("staff_management", { staff: result, name, isAdmin: req.user.designation === 'Admin' });
 			});
 		} catch (error) {
 			console.log(error);
@@ -154,7 +154,7 @@ module.exports = {
 
 			console.log(dishes, customers);
 
-			res.render("newOrder", { dishes, customers, name });
+			res.render("newOrder", { dishes, customers, name, isAdmin: req.user.designation === 'Admin' });
 		} catch (error) {
 			console.log(error);
 		}
@@ -170,7 +170,7 @@ module.exports = {
 			const report = null;
 
 
-			res.render("reports", { report, name });
+			res.render("reports", { report, name, isAdmin: req.user.designation === 'Admin' });
 
 
 

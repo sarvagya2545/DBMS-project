@@ -119,7 +119,7 @@ header {
 
 .social-icons {
 	display: flex;
-	align-items: right;
+	align-items: center;
 	float: right;
 }
 

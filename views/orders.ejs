@@ -14,111 +14,104 @@
 
 <body>
 
-    <%- include('partials/sidebar'); %>
+    <%- include('partials/sidebar', { isAdmin }); %>
 
         <div class="main-content">
 
-            <header>
+            <%- include('partials/top', { name }) %>
 
-                <h2 class="dash-welcome">Welcome, <%=name%>
-                </h2>
+                <main>
+                    <% if(addOrderBtn) { %>
+                        <a class="btn-primary" href="/dashboard/newOrder">
+                            Add order
+                        </a>
+                        <% } %>
 
-                <div class="social-icons">
-                    <span class="ti-user"></span>
-
-                </div>
-            </header>
-
-            <main>
-                <% if(addOrderBtn) { %>
-                    <a class="btn-primary" href="/dashboard/newOrder">
-                        Add order
-                    </a>
-                    <% } %>
-
-                        <div class="activity-card">
-                            <h3 class="dash-title">Orders</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Customer Name</th>
-                                            <th>Date Ordered</th>
-                                            <th>Time Ordered</th>  
-                                            <th>Time Delivered</th>
-                                            <th>Dishes</th>
-                                            <th>
-                                                 Order Total
-                                            </th>
-                                                    <% if(fulfillOrders) { %>
-                                                        <th>
-                                                            Actions
-                                                        </th>
-                                                        <% } %>
-
-
-                                        </tr>
-                                    </thead>
-                                    <% var k=0; %>
-                                        <% for( let i=0; i < orders.length; i++ ) { %>
+                            <div class="activity-card">
+                                <h3 class="dash-title">Orders</h3>
+                                <div class="table-responsive">
+                                    <table>
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                    <%= orders[i].ord_id %>
-                                                </td>
-                                                <td>
-                                                    <%=orders[i].name%>
-
-                                                </td>
-                                                <td>
-                                                    <%= orders[i].date.toLocaleDateString()%>
-                                                </td>
-                                                <td>
-                                                    <%=orders[i].time_ordered%>
-                                                </td>
+                                                <th>Order ID</th>
+                                                <th>Customer Name</th>
+                                                <th>Date Ordered</th>
+                                                <th>Time Ordered</th>
                                                 <% if(timeDelivered) { %>
-                                                    <td>
-                                                        <% if(orders[i].time_delivered) { %>
-                                                            <%=orders[i].time_delivered%>
-                                                                <% } else { %>
-                                                                    <span class="badge warning">Pending</span>
-                                                                    <% } %>
-                                                    </td>
+                                                    <th>Time Delivered</th>
                                                     <% } %>
+                                                        <th>Dishes</th>
+                                                        <th>
+                                                            Order Total
+                                                        </th>
+                                                        <% if(fulfillOrders) { %>
+                                                            <th>
+                                                                Actions
+                                                            </th>
+                                                            <% } %>
+
+
+                                            </tr>
+                                        </thead>
+                                        <% var k=0; %>
+                                            <% for( let i=0; i < orders.length; i++ ) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= orders[i].ord_id %>
+                                                    </td>
+                                                    <td>
+                                                        <%=orders[i].name%>
+
+                                                    </td>
+                                                    <td>
+                                                        <%= orders[i].date.toLocaleDateString()%>
+                                                    </td>
+                                                    <td>
+                                                        <%=orders[i].time_ordered%>
+                                                    </td>
+                                                    <% if(timeDelivered) { %>
                                                         <td>
-                                                            <% for( let j=0; j < orderdishes.length; j++ ) { %>
-                                                                <% if(orders[i].ord_id===orderdishes[j].ord_id ){ %>
+                                                            <% if(orders[i].time_delivered) { %>
+                                                                <%=orders[i].time_delivered%>
+                                                                    <% } else { %>
+                                                                        <span class="badge warning">Pending</span>
+                                                                        <% } %>
+                                                        </td>
+                                                        <% } %>
+                                                            <td>
+                                                                <% for( let j=0; j < orderdishes.length; j++ ) { %>
+                                                                    <% if(orders[i].ord_id===orderdishes[j].ord_id ){ %>
 
-                                                                    <%=orderdishes[j].name%> (X
-                                                                        <%=orderdishes[j].quantity%>)<br>
-
-                                                                            <% } %>
+                                                                        <%=orderdishes[j].name%> (X
+                                                                            <%=orderdishes[j].quantity%>)<br>
 
                                                                                 <% } %>
-                                                        </td>
 
-
-                                                        <td>
-                                                            ₹ <%= orderCostObj[orders[i].ord_id] %>
-                                                    
-                                                        </td>
-                                                        <% if(fulfillOrders) { %>
-                                                            <td>
-                                                                <div class="button-group" data-order-btns
-                                                                    data-orderid="<%=orders[i].ord_id%>">
-                                                                    <button class="btn-primary">Deliver</button>
-                                                                    <button class="btn-danger">Cancel</button>
-                                                                </div>
+                                                                                    <% } %>
                                                             </td>
-                                                            <% } %>
-                                            </tr>
-                                            <% } %>
-                                </table>
+
+
+                                                            <td>
+                                                                ₹ <%= orderCostObj[orders[i].ord_id] %>
+
+                                                            </td>
+                                                            <% if(fulfillOrders) { %>
+                                                                <td>
+                                                                    <div class="button-group" data-order-btns
+                                                                        data-orderid="<%=orders[i].ord_id%>">
+                                                                        <button class="btn-primary">Deliver</button>
+                                                                        <button class="btn-danger">Cancel</button>
+                                                                    </div>
+                                                                </td>
+                                                                <% } %>
+                                                </tr>
+                                                <% } %>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
 
 
-            </main>
+                </main>
 </body>
 
 </html>

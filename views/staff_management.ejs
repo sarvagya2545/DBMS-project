@@ -10,69 +10,61 @@
 </head>
 
 <body>
-    <%- include('partials/sidebar'); %>
+    <%- include('partials/sidebar', { isAdmin }); %>
 
         <div class="main-content">
 
-            <header>
-
-                <h2 class="dash-welcome">Welcome, <%=name%></h2>
-
-                <div class="social-icons">
-                    <span class="ti-user"></span>
-
-                </div>
-            </header>
+            <%- include('partials/top', { name }) %>
 
 
-            <main>
-                <div class="activity-card">
-                    <h3>Our Staff</h3>
+                <main>
+                    <div class="activity-card">
+                        <h3>Our Staff</h3>
 
-                    <div class="table-responsive">
+                        <div class="table-responsive">
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Staff ID</th>
-                                    <th>Staff Name</th>
-                                    <th>Designation</th>
-                                    <th>Salary</th>
-                                    <th>Contact Number</th>
-                                    <th>Email Address</th>
-                                </tr>
-                            </thead>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Staff ID</th>
+                                        <th>Staff Name</th>
+                                        <th>Designation</th>
+                                        <th>Salary</th>
+                                        <th>Contact Number</th>
+                                        <th>Email Address</th>
+                                    </tr>
+                                </thead>
 
 
-                            <% for( let i=0; i < staff.length; i++ ) { %>
-                                <tr>
-                                    <td>
-                                        <%= staff[i].eid %>
-                                    </td>
-                                    <td>
-                                        <%=staff[i].name%>
-                                    </td>
-                                    <td>
-                                        <%=staff[i].designation%>
-                                    </td>
-                                    <td>
-                                        ₹ <%=staff[i].salary%>
-                                    </td>
-                                    <td>
-                                        <%=staff[i].contact%>
-                                    </td>
-                                    <td>
-                                        <%=staff[i].email%>
-                                    </td>
+                                <% for( let i=0; i < staff.length; i++ ) { %>
+                                    <tr>
+                                        <td>
+                                            <%= staff[i].eid %>
+                                        </td>
+                                        <td>
+                                            <%=staff[i].name%>
+                                        </td>
+                                        <td>
+                                            <%=staff[i].designation%>
+                                        </td>
+                                        <td>
+                                            ₹ <%=staff[i].salary%>
+                                        </td>
+                                        <td>
+                                            <%=staff[i].contact%>
+                                        </td>
+                                        <td>
+                                            <%=staff[i].email%>
+                                        </td>
 
-                                </tr>
-                                <% } %>
+                                    </tr>
+                                    <% } %>
 
 
 
 
 
-            </main>
+                </main>
 
 
 
