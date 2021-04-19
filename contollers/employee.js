@@ -49,6 +49,8 @@ module.exports = {
 				salary,
 				contact,
 				designation,
+				isAdmin: req.user.designation === 'Admin',
+				name: req.user.name
 			});
 		} else {
 			// Validation passed
@@ -64,6 +66,8 @@ module.exports = {
 						salary,
 						contact,
 						designation,
+						isAdmin: req.user.designation === 'Admin',
+						name: req.user.name
 					});
 				} else {
 					bcrypt.genSalt(10, function (err, salt) {
@@ -73,18 +77,21 @@ module.exports = {
 							console.log(name, salary, contact, hash, email);
 
 							const sql = `INSERT INTO employees (name, salary, contact, password, email, designation)
-								VALUES ('${name}', '${salary}', ${contact}, '${hash}', '${email}', '${designation}')
+								VALUES (
+									'${name}', 
+									'${salary}', 
+									${parseInt(contact)}, '${hash}', '${email}', '${designation}')
 							`;
 
 							db.query(sql, (err, results) => {
 								if (err) {
 									console.log(err);
 									errors.push({ msg: "Not saved, server error" });
-									return res.render("newEmployee");
+									return res.render("newEmployee", { isAdmin: req.user.designation === 'Admin', name: req.user.name });
 								}
 
-								req.flash("success_msg", "You are now registered and can log in");
-								res.redirect("/employees/login");
+								req.flash("success_msg", "Employee is created, he/she can login using credentials");
+								res.render("newEmployee", { isAdmin: req.user.designation === 'Admin', name: req.user.name })
 							});
 						});
 					});
