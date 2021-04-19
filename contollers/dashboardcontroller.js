@@ -185,7 +185,7 @@ module.exports = {
 			
             const [todayorders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() order by date desc, time_ordered desc;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and date=current_date() group by ordered_dishes.ord_id;");
-			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and date=current_date() group by ordered_dishes.ord_id order by date desc, time_ordered desc;");
+			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and date = current_date() order by time_ordered desc, date desc;");
 
 			const { email, name, eid, contact, salary, designation } = req.user;
 
@@ -209,7 +209,7 @@ module.exports = {
 			
             const [todaycomp_orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() and time_delivered is not null order by date desc, time_ordered desc;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and time_delivered is not null and date=current_date() group by ordered_dishes.ord_id;");
-			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and date=current_date() and time_delivered is not null group by ordered_dishes.ord_id order by date desc, time_ordered desc;");
+			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and date = current_date() and time_delivered is not null order by time_ordered desc, date desc;");
 
 			const { email, name, eid, contact, salary, designation } = req.user;
 
