@@ -11,6 +11,8 @@ let customerSelect = document.querySelector('select.customer');
 let customerVals = Array.from(customerSelect.children).map(child => ({
     id: child.dataset['id']
 }));
+let newCustomerCheckbox = document.querySelector('#newCustomer');
+document.querySelector('[data-customer="new"]').style.display = 'none';
 
 const foodItemHTMLString = `
     <li class="food-item" id="food-item-number-%ID%">
@@ -25,16 +27,58 @@ const foodItemHTMLString = `
     </li>
 `;
 
+// event listeners;
 document.querySelector('.btn-add-dish').addEventListener('click', addItem);
 document.querySelector('.form-new-order').addEventListener('submit', submitOrder);
+newCustomerCheckbox.addEventListener('change', function (e) {
+    if (this.checked) {
+        document.querySelector('[data-customer="old"]').style.display = 'none';
+        document.querySelector('[data-customer="new"]').style.display = 'block';
+    } else {
+        document.querySelector('[data-customer="old"]').style.display = 'block';
+        document.querySelector('[data-customer="new"]').style.display = 'none';
+    }
+})
 
 function submitOrder(e) {
     e.preventDefault();
-    console.log([parseInt(customerSelect.value) + 1])
-    console.log(customerVals[parseInt(customerSelect.value) + 1])
+    // console.log([parseInt(customerSelect.value) + 1])
+    // console.log(customerVals[parseInt(customerSelect.value) + 1])
+
+    if (foodItems.length === 0) {
+        return alert('Please select at least 1 food item');
+    }
+
+    if ((!newCustomerCheckbox.checked && customerSelect.value === '-')) {
+        return alert('Please specify the customer taking the order');
+    }
+
+    const cname = document.querySelector('[data-customer="new"] #cname').value;
+    const contact = document.querySelector('[data-customer="new"] #contact').value;
+    const email = document.querySelector('[data-customer="new"] #email').value;
+
+    if (newCustomerCheckbox.checked) {
+        if (!cname) {
+            return alert('Add customer name');
+        }
+
+        if (!contact && !email) {
+            return alert('Please add some contact details');
+        }
+
+        if (contact && contact.length !== 10) {
+            return alert('Length of contact no is not 10!');
+        }
+    }
+
     var formData = {
         foodItems,
-        customer: customerVals[parseInt(customerSelect.value) + 1].id
+        isNewCustomer: newCustomerCheckbox.checked,
+        customer: newCustomerCheckbox.checked ? {
+            name: cname,
+            contact: contact,
+            email: email
+        } : customerVals[parseInt(customerSelect.value) + 1].id
     }
 
     fetch('/dishes/add-order', {
@@ -46,10 +90,13 @@ function submitOrder(e) {
         body: JSON.stringify(formData)
     })
         .then(res => {
-            console.log(res);
+            alert('Order taken.');
+            document.querySelector('#redirectForm').submit();
         })
         .catch(err => {
+            alert('Some error occurred!');
             console.log(err);
+            console.log(err.response);
         })
 }
 
@@ -88,7 +135,7 @@ function addItem(e) {
 }
 
 function addUpdateListeners(index) {
-    console.log(index);
+    // console.log(index);
     let foodItem = document.querySelector('#food-item-number-' + index);
     foodItem.children[2].children[0].addEventListener('click', () => updateQtyAndPrice(index, true))
     foodItem.children[2].children[2].addEventListener('click', () => updateQtyAndPrice(index, false))
@@ -104,13 +151,13 @@ function updateQtyAndPrice(index, increment) {
         foodItem.children[2].children[1].innerHTML = parseInt(prevQty) + 1;
         newPrice = parseInt(foodItem.children[1].innerText.slice(1)) + parseInt(dishVals[index + 1].price);
     } else {
-        if (prevQty >= 1) {
+        if (prevQty > 1) {
             foodItem.children[2].children[1].innerHTML = parseInt(prevQty) - 1;
             newPrice = parseInt(foodItem.children[1].innerText.slice(1)) - parseInt(dishVals[index + 1].price);
         }
     }
 
-    if (prevQty >= 1 || increment)
+    if (prevQty > 1 || increment)
         foodItem.children[1].innerText = '₹' + newPrice.toString();
 
     // Data updation

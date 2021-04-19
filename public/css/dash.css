@@ -360,8 +360,13 @@ tbody tr:nth-child(even) {
 .text-center button,
 .btn-primary {
 	background: var(--main-color);
-	color: #fff;
 	border: 1px solid var(--main-color);
+}
+
+.text-center button,
+.btn-primary,
+.btn-danger {
+	color: #fff;
 	border-radius: 4px;
 	padding: 0.4rem 1rem;
 }
@@ -370,19 +375,28 @@ tbody tr:nth-child(even) {
 	overflow-x: auto;
 }
 
-.btn-primary {
+.btn-primary, .btn-danger {
 	margin: 10px 0;
 	display: inline-block;
 }
-
-.btn-primary a {
-	color: #fff;
+.btn-danger {
+	background-color: red;
+	border: 1px solid red;
 }
 
 .btn-primary:hover {
-	cursor: pointer;
 	background-color: var(--main-color-light);
 	border: 1px solid var(--main-color-light);
+}
+
+.btn-danger:hover {
+	background-color: #c50000;
+	border: 1px solid #c50000;
+}
+
+.btn-primary:hover,
+.btn-danger:hover {
+	cursor: pointer;
 }
 
 @media only screen and (max-width: 1200px) {
