@@ -10,12 +10,13 @@
 </head>
 
 <body>
-    <%- include('partials/sidebar'); %>
+    <%- include('partials/sidebar', { isAdmin }); %>
         <div class="main-content">
 
             <header>
 
-                <h2 class="dash-welcome">Welcome, <%=name%></h2>
+                <h2 class="dash-welcome">Welcome, <%=name%>
+                </h2>
 
                 <div class="social-icons">
                     <span class="ti-user"></span>

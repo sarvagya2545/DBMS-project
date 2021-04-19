@@ -30,25 +30,27 @@
                     <span>Customers</span>
                 </a>
             </li>
-            <li>
-                <a href="/dashboard/staff_management">
-                    <span class="ti-time"></span>
-                    <span>Staff Management</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dashboard/profile">
-                    <span class="ti-id-badge"></span>
-                    <span>Profile</span>
-                </a>
-            </li>
+            <% if(isAdmin) { %>
+                <li>
+                    <a href="/dashboard/staff_management">
+                        <span class="ti-time"></span>
+                        <span>Staff Management</span>
+                    </a>
+                </li>
+                <% } %>
+                    <li>
+                        <a href="/dashboard/profile">
+                            <span class="ti-id-badge"></span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
 
-            <li>
-                <a href="/dashboard/reports">
-                    <span class="ti-pie-chart"></span>
-                    <span>Reports</span>
-                </a>
-            </li>
+                    <li>
+                        <a href="/dashboard/reports">
+                            <span class="ti-pie-chart"></span>
+                            <span>Reports</span>
+                        </a>
+                    </li>
         </ul>
     </div>
 </div>
