@@ -7,7 +7,7 @@ module.exports = {
 			const { email, name, eid, contact, salary, designation } = req.user;
 			const [employees] = await db.promise().query("SELECT * FROM employees");
 			const [orders] = await db.promise().query("SELECT * FROM orders");
-			const [recentOrders] = await db.promise().query("Select * from orders where (select current_time()) -time_ordered < 020000 and date=(select current_date()) and time_delivered is NULL;");
+			const [recentOrders] = await db.promise().query("Select * from orders where (select current_time()) -time_ordered < 020000 and date= current_date();");
 			const [totalSalesToday] = await db.promise().query("select sum(ordered_dishes.quantity * dish.price) as todaySales from ordered_dishes,orders,dish where dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and orders.date = (select curdate());");
 			const [orderstoday] = await db.promise().query("select * from orders as orders_current  where date=current_date()");
 			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
@@ -179,7 +179,7 @@ module.exports = {
 	today_orders: async function (req, res) {
 		try {
 
-			const [todayorders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() order by date desc, time_ordered desc;");
+			const [todayorders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() order by time_ordered desc;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and date=current_date() group by ordered_dishes.ord_id;");
 			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and date = current_date() order by time_ordered desc, date desc;");
 
@@ -203,7 +203,7 @@ module.exports = {
 	todaycomp_orders: async function (req, res) {
 		try {
 
-			const [todaycomp_orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() and time_delivered is not null order by date desc, time_ordered desc;");
+			const [todaycomp_orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() and time_delivered is not null order by time_ordered desc;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and time_delivered is not null and date=current_date() group by ordered_dishes.ord_id;");
 			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and date = current_date() and time_delivered is not null order by time_ordered desc, date desc;");
 
