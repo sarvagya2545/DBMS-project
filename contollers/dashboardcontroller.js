@@ -12,11 +12,25 @@ module.exports = {
 			const [orderstoday] = await db.promise().query("select * from orders as orders_current  where date=current_date()");
 			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as ordercost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id group by ord_id;");
+			const [customers] = await db.promise().query("select cid, name from customer");
+			const [pendingOrderDishes] = await db.promise().query("select ordered_dishes.ord_id, dish.name, quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and ordered_dishes.ord_id in (Select ord_id from orders where (select current_time()) -time_ordered < 020000 and date=(select current_date()) and time_delivered is NULL);");
 
-			console.log(totalSalesToday);
+			console.log(pendingOrderDishes);
+			const cObj = {};
+
+			for (let i = 0; i < customers.length; i++) {
+				cObj[customers[i].cid] = customers[i].name;
+			}
+
+			const dashboardDetails = recentOrders.map(recentOrder => {
+				return {
+					...recentOrder,
+					customerName: cObj[recentOrder.cid_id]
+				}
+			})
 
 
-			res.render("dashboard_1", { employees, orders, recentOrders, totalSalesToday, orderstoday, name, openOrder, orderCost });
+			res.render("dashboard_1", { employees, orders, dashboardDetails, totalSalesToday, orderstoday, name, openOrder, orderCost, orderdishes: pendingOrderDishes });
 
 			console.log(JSON.stringify(totalSalesToday));
 

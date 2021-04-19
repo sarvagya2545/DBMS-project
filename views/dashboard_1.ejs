@@ -88,45 +88,47 @@
                 <section class="recent">
                     <div class="activity-grid">
                         <div class="activity-card">
-                            <h3>Recent Orders</h3>
+                            <h3>Pending Orders</h3>
                             <div class="table-responsive">
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>Order ID</th>
-                                            <th>Customer ID</th>
-                                            <th>Employee ID</th>
+                                            <th>Customer Name</th>
+                                            <th>Order items</th>
                                             <th>Time Ordered</th>
-                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% for(let i=0; i< recentOrders.length; i++){ %>
+                                        <% for(let i=0; i< dashboardDetails.length; i++) { %>
                                             <tr>
                                                 <td>
-                                                    <%=recentOrders[i].ord_id%>
+                                                    <%=dashboardDetails[i].ord_id%>
                                                 </td>
                                                 <td>
-                                                    <%=recentOrders[i].cid_id%>
+                                                    <%=dashboardDetails[i].customerName%>
                                                 </td>
                                                 <td>
-                                                    <%=recentOrders[i].eid%>
+                                                    <% for( let j=0; j < orderdishes.length; j++ ) { %>
+                                                        <% if(dashboardDetails[i].ord_id===orderdishes[j].ord_id ){ %>
+
+                                                            <%=orderdishes[j].name%> (X<%=orderdishes[j].quantity%>)<br>
+
+                                                                    <% } %>
+
+                                                                        <% } %>
                                                 </td>
                                                 <td>
                                                     <span class="timeOrder">
-                                                        <%=recentOrders[i].time_ordered%>
+                                                        <%=dashboardDetails[i].time_ordered%>
                                                     </span>
                                                 </td>
 
                                                 <td>
-                                                    <span class="badge warning">Pending</span>
-                                                </td>
-
-                                                <td>
                                                     <div class="button-group" data-order-btns
-                                                        data-orderid="<%=recentOrders[i].ord_id%>">
-                                                        <button class="btn-primary">Finish</button>
+                                                        data-orderid="<%=dashboardDetails[i].ord_id%>">
+                                                        <button class="btn-primary">Deliver</button>
                                                         <button class="btn-danger">Cancel</button>
                                                     </div>
                                                 </td>
