@@ -182,8 +182,8 @@ module.exports = {
 	},
 	today_orders: async function (req, res) {
 		try {
-			
-            const [todayorders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() order by date desc, time_ordered desc;");
+
+			const [todayorders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() order by date desc, time_ordered desc;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and date=current_date() group by ordered_dishes.ord_id;");
 			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and date = current_date() order by time_ordered desc, date desc;");
 
@@ -196,7 +196,7 @@ module.exports = {
 			}
 
 
-			res.render("today_orders", {todayorders, name, orderCostObj,orderdishes,timeDelivered: true, addOrderBtn: false, fulfillOrders: false });
+			res.render("today_orders", { todayorders, name, orderCostObj, orderdishes, timeDelivered: true, addOrderBtn: false, fulfillOrders: false, isAdmin: req.user.designation === 'Admin' });
 
 			// console.log(JSON.stringify(totalSalesToday));
 		} catch (error) {
@@ -206,21 +206,21 @@ module.exports = {
 
 	todaycomp_orders: async function (req, res) {
 		try {
-			
-            const [todaycomp_orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() and time_delivered is not null order by date desc, time_ordered desc;");
+
+			const [todaycomp_orders] = await db.promise().query("Select ord_id,customer.name,date, time_ordered, time_delivered from orders, customer where customer.cid = orders.cid_id and date=current_date() and time_delivered is not null order by date desc, time_ordered desc;");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as cost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id and time_delivered is not null and date=current_date() group by ordered_dishes.ord_id;");
 			const [orderdishes] = await db.promise().query("select ordered_dishes.ord_id,dish.name,quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and date = current_date() and time_delivered is not null order by time_ordered desc, date desc;");
 
 			const { email, name, eid, contact, salary, designation } = req.user;
 
 			orderCostObj = {};
+			orderDishObj = {};
 
 			for (let i = 0; i < orderCost.length; i++) {
 				orderCostObj[orderCost[i].ord_id] = orderCost[i].cost;
 			}
 
-
-			res.render("today_comp_orders", {todaycomp_orders, name, orderCostObj,orderdishes,timeDelivered: true, addOrderBtn: false, fulfillOrders: false });
+			res.render("today_comp_orders", { todaycomp_orders, name, orderCostObj, orderdishes, timeDelivered: true, addOrderBtn: false, fulfillOrders: false, isAdmin: req.user.designation === 'Admin' });
 
 			// console.log(JSON.stringify(totalSalesToday));
 		} catch (error) {
