@@ -83,13 +83,13 @@ module.exports = {
 	},
 	newOrder: async function (req, res) {
 		try {
-
+			const { name } = req.user;
 			const [customers] = await db.promise().query("SELECT * FROM customer");
 			const [dishes] = await db.promise().query("SELECT * FROM dish");
 
 			console.log(dishes, customers);
 
-			res.render("newOrder", { dishes, customers });
+			res.render("newOrder", { dishes, customers, name });
 		} catch (error) {
 			console.log(error);
 		}
