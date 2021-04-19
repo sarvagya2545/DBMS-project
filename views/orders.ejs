@@ -136,10 +136,7 @@
 
 
                                     <td>
-                                        <% if(orders[i].ord_id===orderCost[k].ord_id ){ %>
-                                            ₹<%= orderCost[k].cost %>
-                                                <% k++; %>
-                                                    <% } %>
+                                        <%= orderCostObj[orders[i].ord_id] %>
                                     </td>
                                 </tr>
                                 <% } %>
