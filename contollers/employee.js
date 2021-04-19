@@ -17,7 +17,7 @@ module.exports = {
 		res.redirect('/');
 	},
 	newEmployeePage: function (req, res, next) {
-		res.render("newEmployee");
+		res.render("newEmployee", { isAdmin: req.user.designation === 'Admin', name: req.user.name });
 	},
 	newEmployee: function (req, res) {
 		// Pull data out of req.body

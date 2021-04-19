@@ -132,16 +132,12 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	staff_management: function (req, res) {
+	staff_management: async function (req, res) {
 		try {
 			const { email, name, eid, contact, salary, designation } = req.user;
 
-			db.query("SELECT * FROM employees", (err, result) => {
-				if (err) {
-					res.render("staff_management", { error: err });
-				}
-				res.render("staff_management", { staff: result, name, isAdmin: req.user.designation === 'Admin' });
-			});
+			const [result] = await db.promise().query("SELECT * FROM employees");
+			res.render("staff_management", { staff: result, name, isAdmin: req.user.designation === 'Admin' });
 		} catch (error) {
 			console.log(error);
 		}
