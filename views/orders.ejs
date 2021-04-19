@@ -80,7 +80,11 @@
                                                 </td>
                                                 <% if(timeDelivered) { %>
                                                     <td>
-                                                        <%=orders[i].time_delivered%>
+                                                        <% if(orders[i].time_delivered) { %>
+                                                            <%=orders[i].time_delivered%>
+                                                                <% } else { %>
+                                                                    <span class="badge warning">Pending</span>
+                                                                    <% } %>
                                                     </td>
                                                     <% } %>
                                                         <td>
