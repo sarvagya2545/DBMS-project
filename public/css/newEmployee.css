@@ -1,0 +1,20 @@
+.activity-card {
+    width: 600px;
+}
+
+.form-new-employee {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    justify-content: center;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group input {
+    min-width: 200px;
+}

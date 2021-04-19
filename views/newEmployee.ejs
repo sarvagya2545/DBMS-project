@@ -7,6 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="/css/dash.css">
+    <link rel="stylesheet" href="/css/newOrder.css">
+    <link rel="stylesheet" href="/css/newEmployee.css">
+
 </head>
 
 <body>
@@ -19,11 +22,11 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
-                                <div class="card">
-                                    <div class="card-header">New employee</div>
+                                <h2 class="dash-title">New employee</h2>
+                                <div class="activity-card">
                                     <%- include('./partials/messages.ejs'); %>
                                         <div class="card-body">
-                                            <form action="/employees/new" method="POST">
+                                            <form action="/employees/new" class="form-new-employee" method="POST">
                                                 <div class="form-group row">
                                                     <label for="email"
                                                         class="col-md-4 col-form-label text-md-right">E-Mail
@@ -57,7 +60,7 @@
                                                         class="col-md-4 col-form-label text-md-right">Salary</label>
                                                     <div class="col-md-6">
                                                         <input type="text" id="salary" class="form-control"
-                                                            name="salary">
+                                                            name="salary" pattern="[0-9]+">
                                                     </div>
                                                 </div>
 
@@ -66,7 +69,7 @@
                                                         class="col-md-4 col-form-label text-md-right">Contact</label>
                                                     <div class="col-md-6">
                                                         <input type="text" id="contact" class="form-control"
-                                                            name="contact">
+                                                            name="contact" pattern="[0-9]{10}">
                                                     </div>
                                                 </div>
 
@@ -90,9 +93,9 @@
                                                 </div>
 
                                                 <div class="col-md-6 offset-md-4">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Login
-                                                    </button>
+                                                    <a type="submit" class="btn btn-primary">
+                                                        Register employee
+                                                    </a>
                                                 </div>
                                         </div>
                                         </form>
