@@ -13,55 +13,46 @@
     <%- include('partials/sidebar', { isAdmin }); %>
         <div class="main-content">
 
-            <header>
-
-                <h2 class="dash-welcome">Welcome, <%=name%>
-                </h2>
-
-                <div class="social-icons">
-                    <span class="ti-user"></span>
-
-                </div>
-            </header>
+            <%- include('partials/top', { name }) %>
 
 
-            <main>
-                <div class="activity-card">
-                    <h3>Our Customers</h3>
+                <main>
+                    <div class="activity-card">
+                        <h3>Our Customers</h3>
 
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Customer ID</th>
-                                    <th>Customer Name</th>
-                                    <th>Contact Number</th>
-                                    <th>Email Address</th>
-
-
-                                </tr>
-                            </thead>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Customer ID</th>
+                                        <th>Customer Name</th>
+                                        <th>Contact Number</th>
+                                        <th>Email Address</th>
 
 
-                            <% for( let i=0; i < customers.length; i++ ) { %>
-                                <tr>
-                                    <td>
-                                        <%= customers[i].cid %>
-                                    </td>
-                                    <td>
-                                        <%=customers[i].name%>
-                                    </td>
-                                    <td>
-                                        <%=customers[i].contact%>
-                                    </td>
-                                    <td>
-                                        <%=customers[i].email%>
-                                    </td>
+                                    </tr>
+                                </thead>
 
-                                </tr>
-                                <% } %>
 
-            </main>
+                                <% for( let i=0; i < customers.length; i++ ) { %>
+                                    <tr>
+                                        <td>
+                                            <%= customers[i].cid %>
+                                        </td>
+                                        <td>
+                                            <%=customers[i].name%>
+                                        </td>
+                                        <td>
+                                            <%=customers[i].contact%>
+                                        </td>
+                                        <td>
+                                            <%=customers[i].email%>
+                                        </td>
+
+                                    </tr>
+                                    <% } %>
+
+                </main>
 </body>
 
 </html>

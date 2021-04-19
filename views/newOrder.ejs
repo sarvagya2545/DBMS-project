@@ -19,67 +19,58 @@
 
         <div class="main-content">
 
-            <header>
+            <%- include('partials/top', { name }) %>
 
-                <h2 class="dash-welcome">Welcome, <%= name %>
-                </h2>
+                <main>
+                    <h2 class="dash-title">New Order</h2>
+                    <div class="food-items">
+                        <ul></ul>
+                    </div>
 
-                <div class="social-icons">
-                    <span class="ti-user"></span>
-
-                </div>
-            </header>
-
-            <main>
-                <h2 class="dash-title">New Order</h2>
-                <div class="food-items">
-                    <ul></ul>
-                </div>
-
-                <!-- action="/dishes/add-order" method="POST" -->
-                <form class="form-new-order">
-                    <div class="form-group">
-                        <label for="dish" class="dishLabel">Add dish: </label>
-                        <select data-custom name="dish" class="dish">
-                            <option value="-">Select dish</option>
-                            <% for(var i=0; i < dishes.length; i++) { %>
-                                <option value="<%= i %>" data-price="<%= dishes[i].price %>"
-                                    data-id="<%= dishes[i].dish_id %>">
-                                    <%= dishes[i].name %>
-                                </option>
-                                <% } %>
-                        </select>
-                        <button class="btn btn-primary btn-add-dish">Add dish to order</button>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="isNewCustomer" id="newCustomer">
-                        <label for="isNewCustomer">New customer?</label>
-                    </div>
-                    <div class="form-group" data-customer="old">
-                        <label for="customer" class="customerLabel">Customer name: </label>
-                        <select data-custom name="customer" class="customer">
-                            <option value="-">Select old customer</option>
-                            <% for(let i=0; i < customers.length; i++) { %>
-                                <option value="<%= i %>" data-id="<%= customers[i].cid %>">
-                                    <%= customers[i].name %>
-                                </option>
-                                <% } %>
-                        </select>
-                    </div>
-                    <div class="form-group" data-customer="new">
-                        <label for="cname">Customer Name: </label>
-                        <input type="text" name="cname" id="cname" placeholder="Enter name">
-                        <label for="contact">Contact: </label>
-                        <input type="tel" name="contact" id="contact" placeholder="Phone no">
-                        <label for="email">Email: </label>
-                        <input type="email" name="email" id="email" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn-primary" type="submit">Submit Order</button>
-                    </div>
-                </form>
-                <form id="redirectForm" action="/dishes/redirect" method="GET" style="display: none;"></form>
-            </main>
+                    <!-- action="/dishes/add-order" method="POST" -->
+                    <form class="form-new-order">
+                        <div class="form-group">
+                            <label for="dish" class="dishLabel">Add dish: </label>
+                            <select data-custom name="dish" class="dish">
+                                <option value="-">Select dish</option>
+                                <% for(var i=0; i < dishes.length; i++) { %>
+                                    <option value="<%= i %>" data-price="<%= dishes[i].price %>"
+                                        data-id="<%= dishes[i].dish_id %>">
+                                        <%= dishes[i].name %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                            <button class="btn btn-primary btn-add-dish">Add dish to order</button>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="isNewCustomer" id="newCustomer">
+                            <label for="isNewCustomer">New customer?</label>
+                        </div>
+                        <div class="form-group" data-customer="old">
+                            <label for="customer" class="customerLabel">Customer name: </label>
+                            <select data-custom name="customer" class="customer">
+                                <option value="-">Select old customer</option>
+                                <% for(let i=0; i < customers.length; i++) { %>
+                                    <option value="<%= i %>" data-id="<%= customers[i].cid %>">
+                                        <%= customers[i].name %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="form-group" data-customer="new">
+                            <label for="cname">Customer Name: </label>
+                            <input type="text" name="cname" id="cname" placeholder="Enter name">
+                            <label for="contact">Contact: </label>
+                            <input type="tel" name="contact" id="contact" placeholder="Phone no">
+                            <label for="email">Email: </label>
+                            <input type="email" name="email" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn-primary" type="submit">Submit Order</button>
+                        </div>
+                    </form>
+                    <form id="redirectForm" action="/dishes/redirect" method="GET" style="display: none;"></form>
+                </main>
 
 
 </body>
