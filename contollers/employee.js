@@ -26,6 +26,10 @@ module.exports = {
 			failureRedirect: "/employees/login",
 			failureFlash: true,
 		})(req, res, next),
+	logout: (req, res) => {
+		req.session.destroy();
+		res.redirect('/');
+	},
 	newEmployeePage: function (req, res, next) {
 		res.render("newEmployee");
 	},
