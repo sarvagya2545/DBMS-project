@@ -3,9 +3,6 @@ const db = require('../config/db');
 module.exports = {
     addOrder: async (req, res) => {
         try {
-            console.log('orders: ', req.body);
-            console.log(req.user.eid);
-
             const { foodItems, isNewCustomer } = req.body;
             let order_id;
             if (!isNewCustomer) {

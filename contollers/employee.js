@@ -3,20 +3,6 @@ const db = require("../config/db");
 const bcrypt = require("bcryptjs");
 
 module.exports = {
-	getEmployees: function (req, res) {
-		try {
-			db.query("SELECT * FROM employees", (err, result) => {
-				if (err) {
-					throw err;
-				}
-
-				res.render("index", { employees: result });
-			});
-		} catch (error) {
-			console.log(error);
-			return res.status(500).send(error);
-		}
-	},
 	loginPage: function (req, res) {
 		res.render("login");
 	},
