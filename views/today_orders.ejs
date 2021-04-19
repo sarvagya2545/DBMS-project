@@ -56,26 +56,17 @@
                                             <% } else { %>
                                                 <td> <span class="badge warning">Pending</span></td>
                                                 <% } %>
-                                                    </td>
-
-
-
                                                     <td>
                                                         <% for( let j=0; j < orderdishes.length; j++ ) { %>
                                                             <% if(todayorders[i].ord_id===orderdishes[j].ord_id ){ %>
-
-                                                    <td>
-                                                        <% for( let j=0; j < orderdishes.length; j++ ) { %>
-                                                            <% if(todayorders[i].ord_id===orderdishes[j].ord_id ){ %>
-
-                                                                <% } %>
-
-                                                                    <% } %>
+                                                                <%=orderdishes[j].name%> (X
+                                                                    <%=orderdishes[j].quantity%>)<br>
+                                                                        <% } %>
+                                                                            <% } %>
                                                     </td>
 
                                                     <td>
                                                         ₹ <%= orderCostObj[todayorders[i].ord_id] %>
-
                                                     </td>
 
 
