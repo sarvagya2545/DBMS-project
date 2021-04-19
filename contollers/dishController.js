@@ -40,5 +40,35 @@ module.exports = {
         } catch (error) {
             res.send(error);
         }
+    },
+    completeOrder: async (req, res) => {
+        try {
+            console.log(req.body);
+            const { ord_id } = req.body;
+
+            let query = `UPDATE orders SET time_delivered = CURRENT_TIME() WHERE ord_id = ${ord_id}`;
+            const [result] = await db.promise().query(query);
+            res.status(204).send('Updated');
+
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    },
+    removeOrder: async (req, res) => {
+        try {
+            console.log(req.body);
+            const { ord_id } = req.body;
+
+            let query1 = `DELETE FROM ordered_dishes WHERE ord_id = ${ord_id}`;
+            const [result1] = await db.promise().query(query1);
+
+            let query = `DELETE FROM orders WHERE ord_id=${ord_id}`;
+            const [result] = await db.promise().query(query);
+            res.status(204).send('Deleted');
+
+        } catch (error) {
+            res.status(500).send(error);
+            console.log(error);
+        }
     }
 }

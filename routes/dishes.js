@@ -11,5 +11,7 @@ router.post('/add-order', ensureAuthenticated, DishController.addOrder);
 router.get('/redirect', (req, res) => {
 	res.redirect(307, '/dashboard');
 })
+router.post('/finish', DishController.completeOrder);
+router.post('/remove', DishController.removeOrder);
 
 module.exports = router;

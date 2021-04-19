@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="/css/dash.css">
+    <script src="/js/dash.js" defer></script>
 </head>
 
 <body>
@@ -20,10 +21,6 @@
 
                 <h2 class="dash-welcome">Welcome, <%=name%>
                 </h2>
-                <!--<div class="search-wrapper">
-                <span class="ti-search"></span>
-                <input type="search" placeholder="Search">
-            </div>-->
 
                 <div class="social-icons">
                     <a href="/dashboard/profile"> <span class="ti-user"></span></a>
@@ -36,21 +33,6 @@
                 <h2 class="dash-title">Overview</h2>
 
                 <div class="dash-cards">
-                    <!--<div class="card-single">
-                    <div class="card-body">
-                        <span class="ti-briefcase"></span>
-                        <div>
-                            <h5>Tables Available</h5>
-                            <h4>10</h4>
-                        </div>
-                        
-                    </div>
-                    <div class="card-footer">
-                        <a href="/dashboard/tables">View all Tables</a>
-                    </div>
-                   
-                </div>-->
-
                     <div class="card-single">
                         <div class="card-body">
                             <span class="ti-check-box"></span>
@@ -142,7 +124,8 @@
                                                 </td>
 
                                                 <td>
-                                                    <div class="button-group">
+                                                    <div class="button-group" data-order-btns
+                                                        data-orderid="<%=recentOrders[i].ord_id%>">
                                                         <button class="btn-primary">Finish</button>
                                                         <button class="btn-danger">Cancel</button>
                                                     </div>
