@@ -59,7 +59,7 @@ app.get("/", function (req, res) {
 				throw err;
 			}
 
-			res.render("menu", { dish: result,dishimages });
+			res.render("menu", { dish: result });
 		});
 	} catch (error) {
 		console.log(error);

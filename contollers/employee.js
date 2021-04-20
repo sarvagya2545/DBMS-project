@@ -54,9 +54,10 @@ module.exports = {
 			});
 		} else {
 			// Validation passed
-			db.query(`SELECT * FROM employees WHERE email = ${email}`, (err, result) => {
-				if (result) {
-					errors.push({ msg: "User is already registered" });
+			db.query(`SELECT * FROM employees WHERE email = '${email}'`, (err, result) => {
+				console.log('result', result);
+				if (result.length !== 0) {
+					errors.push({ msg: "User is already registered.. Try with different email" });
 					res.render("newEmployee", {
 						errors,
 						name,

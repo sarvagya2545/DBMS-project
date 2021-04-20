@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
     <link rel="stylesheet" href="/css/dash.css">
     <link rel="stylesheet" href="/css/newOrder.css">
     <link rel="stylesheet" href="/css/newEmployee.css">
+    <script src="/js/newEmployee.js" defer></script>
 
 </head>
 
@@ -19,93 +21,81 @@
             <%- include('partials/top', { name }) %>
 
                 <main class="login-form">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <h2 class="dash-title">New employee</h2>
-                                <div class="activity-card">
-                                    <%- include('./partials/messages.ejs'); %>
-                                        <div class="card-body">
-                                            <form action="/employees/new" class="form-new-employee" method="POST">
-                                                <div class="form-group row">
-                                                    <label for="email"
-                                                        class="col-md-4 col-form-label text-md-right">E-Mail
-                                                        Address</label>
-                                                    <div class="col-md-6">
-                                                        <input type="email" id="email_address" class="form-control"
-                                                            name="email" required autofocus>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="name"
-                                                        class="col-md-4 col-form-label text-md-right">Name</label>
-                                                    <div class="col-md-6">
-                                                        <input type="text" id="name" class="form-control" name="name"
-                                                            required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="designation"
-                                                        class="col-md-4 col-form-label text-md-right">Designation</label>
-                                                    <div class="col-md-6">
-                                                        <input type="text" id="designation" class="form-control"
-                                                            name="designation" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="salary"
-                                                        class="col-md-4 col-form-label text-md-right">Salary</label>
-                                                    <div class="col-md-6">
-                                                        <input type="text" id="salary" class="form-control"
-                                                            name="salary" pattern="[0-9]+">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="contact"
-                                                        class="col-md-4 col-form-label text-md-right">Contact</label>
-                                                    <div class="col-md-6">
-                                                        <input type="text" id="contact" class="form-control"
-                                                            name="contact" pattern="[0-9]{10}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="password"
-                                                        class="col-md-4 col-form-label text-md-right">Password</label>
-                                                    <div class="col-md-6">
-                                                        <input type="password" id="password" class="form-control"
-                                                            name="password" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label for="password2"
-                                                        class="col-md-4 col-form-label text-md-right">Confirm
-                                                        Password</label>
-                                                    <div class="col-md-6">
-                                                        <input type="password" id="password2" class="form-control"
-                                                            name="password2" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6 offset-md-4">
-                                                    <a type="submit" class="btn btn-primary">
-                                                        Register employee
-                                                    </a>
-                                                </div>
+                    <h2 class="dash-title">New employee</h2>
+                    <div class="activity-card">
+                        <%- include('partials/message2'); %>
+                            <div class="card-body">
+                                <form class="form-new-employee">
+                                    <div class="form-group row">
+                                        <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail
+                                            Address</label>
+                                        <div class="col-md-6">
+                                            <input type="email" id="email_address" class="form-control" name="email"
+                                                autofocus>
+                                            <p>Please enter a valid email</p>
                                         </div>
-                                        </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        </div>
+                                    </div>
 
-        </main>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="name" class="form-control" name="name">
+                                            <p>Please enter a name</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="designation"
+                                            class="col-md-4 col-form-label text-md-right">Designation</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="designation" class="form-control" name="designation">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="salary" class="col-md-4 col-form-label text-md-right">Salary</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="salary" class="form-control" name="salary">
+                                            <p>Salary shoud be 1 digit long altleast</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="contact"
+                                            class="col-md-4 col-form-label text-md-right">Contact</label>
+                                        <div class="col-md-6">
+                                            <input type="text" id="contact" class="form-control" name="contact">
+                                            <p>Contact number should be 10 digits long only</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="password"
+                                            class="col-md-4 col-form-label text-md-right">Password</label>
+                                        <div class="col-md-6">
+                                            <input type="password" id="password" class="form-control" name="password">
+                                            <p>Password should be more than 6 digits long</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="password2" class="col-md-4 col-form-label text-md-right">Confirm
+                                            Password</label>
+                                        <div class="col-md-6">
+                                            <input type="password" id="password2" class="form-control" name="password2">
+                                            <p>Confirm Password should match Password</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary" id="submit">
+                                            Register employee
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+                </main>
         </div>
 
 </body>
