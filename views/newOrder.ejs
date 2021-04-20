@@ -53,6 +53,8 @@
                                 <% for(let i=0; i < customers.length; i++) { %>
                                     <option value="<%= i %>" data-id="<%= customers[i].cid %>">
                                         <%= customers[i].name %>
+                                            <%= customers[i].contact %>
+                                                <%= customers[i].email %>
                                     </option>
                                     <% } %>
                             </select>
