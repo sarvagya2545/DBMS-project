@@ -90,6 +90,10 @@ function submitOrder(e) {
         body: JSON.stringify(formData)
     })
         .then(res => {
+            if (res.status == 400) {
+                return alert('Please enter contact details');
+            }
+
             alert('Order taken.');
             document.querySelector('#redirectForm').submit();
         })

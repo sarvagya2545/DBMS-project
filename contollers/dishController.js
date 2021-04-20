@@ -14,6 +14,22 @@ module.exports = {
 
             } else {
                 const { customer: { name, contact, email } } = req.body;
+
+                let query1;
+                if (contact && email) {
+                    query1 = `SELECT * FROM customer WHERE email=${email} OR contact=${contact}`;
+                } else if (contact) {
+                    query1 = `SELECT * FROM customer WHERE contact=${contact}`
+                } else if (email) {
+                    query1 = `SELECT * FROM customer WHERE email=${email}`
+                } else {
+                    return res.status(400).json({ err: 'Please enter some contact detail' });
+                }
+
+                const [result1] = await db.promise().query(query1);
+                console.log(result1);
+                if (result1.length !== 0) return res.status(400).json({ err: 'Customer already exists' });
+
                 let query = `INSERT INTO customer (name, contact, email) VALUES ('${name}', ${parseInt(contact)}, '${email}');`;
                 const [cres] = await db.promise().query(query);
                 customer_id = cres.insertId;
