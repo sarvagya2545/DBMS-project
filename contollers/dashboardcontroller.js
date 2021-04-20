@@ -13,7 +13,7 @@ module.exports = {
 			const [openOrder] = await db.promise().query("select * from orders as open_orders  where time_delivered is NULL");
 			const [orderCost] = await db.promise().query("select ordered_dishes.ord_id,sum(ordered_dishes.quantity * dish.price) as ordercost from ordered_dishes,orders,dish where  dish.dish_id = ordered_dishes.dish_id and orders.ord_id = ordered_dishes.ord_id group by ord_id;");
 			const [customers] = await db.promise().query("select cid, name from customer");
-			const [pendingOrderDishes] = await db.promise().query("select ordered_dishes.ord_id, dish.name, quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and ordered_dishes.ord_id in (Select ord_id from orders where (select current_time()) -time_ordered < 020000 and date=(select current_date()) and time_delivered is NULL);");
+			const [pendingOrderDishes] = await db.promise().query("select ordered_dishes.ord_id, dish.name, quantity from dish, orders, ordered_dishes where ordered_dishes.dish_id = dish.dish_id and ordered_dishes.ord_id = orders.ord_id and ordered_dishes.ord_id in (Select ord_id from orders where (select current_time()) -time_ordered < 020000 and date=(select current_date()));");
 
 			console.log(pendingOrderDishes);
 			const cObj = {};

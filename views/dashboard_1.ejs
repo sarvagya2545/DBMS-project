@@ -34,11 +34,11 @@
                                     </h4>
                                 </div>
                             </div>
-                            
-                        <div class="card-footer">
-                            <a href="/dashboard/today_orders">View All Orders Today</a>
+
+                            <div class="card-footer">
+                                <a href="/dashboard/today_orders">View All Orders Today</a>
+                            </div>
                         </div>
-                    </div>
 
                         <div class="card-single">
                             <div class="card-body">
@@ -120,11 +120,15 @@
                                                     </td>
 
                                                     <td>
-                                                        <div class="button-group" data-order-btns
-                                                            data-orderid="<%=dashboardDetails[i].ord_id%>">
-                                                            <button class="btn-primary">Deliver</button>
-                                                            <button class="btn-danger">Cancel</button>
-                                                        </div>
+                                                        <% if(dashboardDetails[i].time_delivered==null) { %>
+                                                            <div class="button-group" data-order-btns
+                                                                data-orderid="<%=dashboardDetails[i].ord_id%>">
+                                                                <button class="btn-primary">Deliver</button>
+                                                                <button class="btn-danger">Cancel</button>
+                                                            </div>
+                                                            <% } else { %>
+                                                                <span class="badge success">Completed</span>
+                                                                <% } %>
                                                     </td>
                                                 </tr>
                                                 <% } %>
