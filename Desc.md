@@ -1,1 +1,1 @@
-We have made a online restaurent system.
+We have made an online restaurant database management system.
